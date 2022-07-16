@@ -16,9 +16,22 @@ function photographerFactory(data) {
     const h2 = document.createElement("h2");
     h2.textContent = name;
 
+    const localisation = document.createElement("p");
+    localisation.textContent = `${city}, ${country}`;
+
+    const taglineElement = document.createElement("blockquote");
+    taglineElement.textContent = tagline;
+
+    const priceElement = document.createElement("div");
+    priceElement.textContent = `${price}€/jour`;
+
     article.appendChild(anchor);
+
     anchor.appendChild(img);
+    anchor.appendChild(localisation);
+    anchor.appendChild(taglineElement);
     anchor.appendChild(h2);
+    anchor.appendChild(priceElement);
     return article;
   }
   return { name, picture, getUserCardDOM, profilURL };
