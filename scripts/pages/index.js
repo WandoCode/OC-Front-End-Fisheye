@@ -1,18 +1,19 @@
 async function getPhotographers() {
   try {
+    // Fetch photographers datas from DB
     const reponse = await fetch("../../data/photographers.json");
     const datas = await reponse.json();
     const photographers = datas.photographers;
 
     return photographers;
   } catch (error) {
+    // Show error on console if any
     console.error(error);
   }
 }
 
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
-  console.log(photographers);
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
