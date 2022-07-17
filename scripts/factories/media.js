@@ -8,6 +8,7 @@ function mediaFactory(media, photographerName) {
     return mediaPath;
   }
 
+  // Create a card for a picture media
   function getCardPictureDOM() {
     const article = document.createElement("article");
     const img = document.createElement("img");
@@ -17,12 +18,14 @@ function mediaFactory(media, photographerName) {
     return article;
   }
 
+  // Create a card for a videa media
   function getCardVideoDOM() {
     const article = document.createElement("article");
     article.textContent = "2";
     return article;
   }
 
+  // Generate media card following media type
   function getMediaCardDom() {
     if (media.image) {
       return getCardPictureDOM();
