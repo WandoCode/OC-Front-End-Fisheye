@@ -60,7 +60,8 @@ h1 {
   font-weight: 400;
 }
 
-.photographer_section article img {
+.photographer_section article img,
+.photograph-header img {
   height: 200px;
   width: 200px;
   border-radius: 100%;

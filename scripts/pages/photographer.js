@@ -8,9 +8,9 @@ async function getPhotographerDatas(photographerId) {
     return photographer.id === parseInt(photographerId);
   });
 
-  // Get the given photographer medias entry in DB
+  // Get the given photographer media entries in DB
   const mediasDatas = datas.media;
-  const medias = mediasDatas.find((media) => {
+  const medias = mediasDatas.filter((media) => {
     return media.photographerId === parseInt(photographerId);
   });
 
@@ -21,7 +21,6 @@ function displayData(photographerDatas) {
   const photographHeader = document.querySelector(".photograph-header");
 
   const photographerModel = photographerFactory(photographerDatas.photographer);
-  const mediasModel = mediaFactory(photographerDatas.medias);
 
   const photographerDetails = photographerModel.getUserDetailsDOM();
   const photographerImg = photographerModel.getUserPictureDOM();
@@ -30,6 +29,15 @@ function displayData(photographerDatas) {
   photographHeader.append(photographerImg);
 
   // TODO: Create media factory and calls it to display in the page here
+  const mediasSection = document.querySelector(".medias-section");
+  photographerDatas.medias.forEach((media) => {
+    const mediasModel = mediaFactory(
+      media,
+      photographerDatas.photographer.name
+    );
+    mediaCard = mediasModel.getMediaCardDom();
+    mediasSection.append(mediaCard);
+  });
 }
 
 async function init() {
