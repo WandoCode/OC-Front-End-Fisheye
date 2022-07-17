@@ -1,0 +1,1 @@
+function mediaFactory(data) {}

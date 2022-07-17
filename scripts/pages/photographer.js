@@ -1,1 +1,6 @@
-//Mettre le code JavaScript lié à la page photographer.html
+async function init() {
+  const urlParams = new URL(document.location).searchParams;
+  const photographerID = urlParams.get("id");
+}
+
+init();

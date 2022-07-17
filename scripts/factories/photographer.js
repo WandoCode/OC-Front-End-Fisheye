@@ -30,10 +30,10 @@ function photographerFactory(data) {
 
     article.appendChild(anchor);
     anchor.appendChild(img);
-    anchor.appendChild(localisation);
-    anchor.appendChild(taglineElement);
     anchor.appendChild(h2);
-    anchor.appendChild(priceElement);
+    article.appendChild(localisation);
+    article.appendChild(taglineElement);
+    article.appendChild(priceElement);
     return article;
   }
   return { name, picture, getUserCardDOM, profilURL };
