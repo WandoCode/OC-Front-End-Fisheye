@@ -7,6 +7,14 @@ function photographerFactory(data) {
 
   const localisationText = `${city}, ${country}`;
 
+  function getLocalizationDOM() {
+    const localisation = document.createElement("p");
+    localisation.textContent = localisationText;
+    localisation.classList.add("localization");
+
+    return localisation;
+  }
+
   // Create a container with photographer main details
   function getUserDetailsDOM() {
     const container = document.createElement("div");
@@ -14,8 +22,7 @@ function photographerFactory(data) {
     const h1 = document.createElement("h1");
     h1.textContent = name;
 
-    const localisation = document.createElement("p");
-    localisation.textContent = localisationText;
+    const localisation = getLocalizationDOM();
 
     const taglineElement = document.createElement("blockquote");
     taglineElement.textContent = tagline;
@@ -36,8 +43,8 @@ function photographerFactory(data) {
     return img;
   }
 
+  // Create a card for a photographer presentation
   function getUserCardDOM() {
-    // Create a card for a photographer presentation
     const article = document.createElement("article");
 
     const anchor = document.createElement("a");
@@ -48,14 +55,14 @@ function photographerFactory(data) {
     const h2 = document.createElement("h2");
     h2.textContent = name;
 
-    const localisation = document.createElement("p");
-    localisation.textContent = localisationText;
+    const localisation = getLocalizationDOM();
 
     const taglineElement = document.createElement("blockquote");
     taglineElement.textContent = tagline;
 
-    const priceElement = document.createElement("div");
+    const priceElement = document.createElement("p");
     priceElement.textContent = `${price}€/jour`;
+    priceElement.classList.add("price");
 
     article.appendChild(anchor);
 

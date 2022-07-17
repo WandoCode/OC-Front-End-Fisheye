@@ -24,7 +24,12 @@ function displayData(photographerDatas) {
   const mediasModel = mediaFactory(photographerDatas.medias);
 
   const photographerDetails = photographerModel.getUserDetailsDOM();
+  const photographerImg = photographerModel.getUserPictureDOM();
+
   photographHeader.prepend(photographerDetails);
+  photographHeader.append(photographerImg);
+
+  // TODO: Create media factory and calls it to display in the page here
 }
 
 async function init() {
