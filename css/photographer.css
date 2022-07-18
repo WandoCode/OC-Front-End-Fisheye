@@ -111,6 +111,7 @@ form input {
   height: 300px;
   width: 350px;
   object-fit: cover;
+  image-rendering: pixelated;
   border-radius: 7px;
 }
 

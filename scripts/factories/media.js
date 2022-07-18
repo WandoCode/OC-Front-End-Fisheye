@@ -32,26 +32,45 @@ function mediaFactory(media, photographerName) {
     const h2 = document.createElement("h2");
     h2.textContent = `${title}`;
 
-    const likesElement = document.createElement("div");
-    const nbrLikes = document.createElement("span");
-    nbrLikes.textContent = `${likes}`;
+    const likesElement = createLikeDOM();
 
-    const likeIcone = document.createElement("i");
-    likeIcone.classList.add("fa-regular");
-    likeIcone.classList.add("fa-heart");
-    likeIcone.onclick = toggleLike;
-
-    // Add image to card
+    // Add image to the card
     article.append(img);
 
-    // Add details to card (title, nbr likes)
+    // Add details to the card (title, nbr likes)
     article.append(detailsContainer);
     detailsContainer.append(h2);
     detailsContainer.append(likesElement);
-    likesElement.append(nbrLikes);
-    likesElement.append(likeIcone);
 
     return article;
+  }
+
+  // Create the like button for card
+  function createLikeDOM() {
+    const likeContainer = document.createElement("div");
+
+    const nbrLikes = document.createElement("span");
+    nbrLikes.textContent = `${likes}`;
+
+    const iconsContainer = document.createElement("div");
+
+    const iconEmpty = document.createElement("i");
+    iconEmpty.classList.add("fa-regular");
+    iconEmpty.classList.add("fa-heart");
+
+    const iconFilled = document.createElement("i");
+    iconFilled.classList.add("fa-solid");
+    iconFilled.classList.add("fa-heart");
+    iconFilled.style.display = "none";
+
+    likeContainer.append(nbrLikes);
+    likeContainer.append(iconsContainer);
+
+    iconsContainer.append(iconEmpty);
+    iconsContainer.append(iconFilled);
+    iconsContainer.onclick = toggleLike;
+
+    return likeContainer;
   }
 
   // Create the thumbnail path in the DB
@@ -64,15 +83,20 @@ function mediaFactory(media, photographerName) {
   // Toogle like icon and nbr of likes
   function toggleLike(e) {
     const icon = e.target;
-    const nbrLikes = e.target.previousSibling;
+    const iconsArray = icon.parentNode.childNodes;
+    const nbrLikes = icon.parentNode.parentNode.childNodes[0];
 
-    if (icon.classList.contains("fa-regular")) {
-      icon.classList.replace("fa-regular", "fa-solid");
-      likes += 1;
-    } else if (icon.classList.contains("fa-solid")) {
-      icon.classList.replace("fa-solid", "fa-regular");
-      likes -= 1;
-    }
+    // Add or remove a like following the clicked icon
+    likes = icon.classList.contains("fa-regular") ? likes + 1 : likes - 1;
+
+    // Toggle between the empty and filled icon
+    iconsArray.forEach((icon) => {
+      if (icon.style.display === "none") {
+        icon.style.display = "inline-block";
+      } else if (icon.style.display !== "none") {
+        icon.style.display = "none";
+      }
+    });
     nbrLikes.textContent = likes;
     //TODO: Faire une fct updateTotalLike qui recalcul le nbr total de like et update la valeur totale (il faut pouvoir communiquer la valeur en dehors de la fct factory quand la velur change, comment?)
   }
