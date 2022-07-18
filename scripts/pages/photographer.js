@@ -39,11 +39,39 @@ function displayMediaCards(photographerDatas, sorting) {
     mediasSection.append(mediaCard);
   });
 }
-function displayTotalLikes(mediasData) {
-  const totalLikes = getTotalLikes(mediasData);
+
+// Display total nbr of likes and price for the photographer
+function displayNbrDetails(photographerDatas) {
+  const main = document.querySelector("main");
+  const totalLikes = getTotalLikes(photographerDatas.medias);
   console.log(totalLikes);
+
+  const priceContainer = document.createElement("p");
+
+  const priceText = `${photographerDatas.photographer.price}€ / jour`;
+  priceContainer.textContent = priceText;
+
+  const notch = document.createElement("div");
+
+  const likesContainer = document.createElement("p");
+
+  const nbrLikes = document.createElement("span");
+  nbrLikes.textContent = `${totalLikes}`;
+
+  const icon = document.createElement("i");
+  icon.classList.add("fa-heart");
+  icon.classList.add("fa-solid");
+
+  main.append(notch);
+
+  notch.append(likesContainer);
+  notch.append(priceContainer);
+
+  likesContainer.append(nbrLikes);
+  likesContainer.append(icon);
 }
 
+// Calcul the total number of likes for the photographer
 function getTotalLikes(mediasData) {
   let initialValue = 0;
   const total = mediasData.reduce((sum, media) => {
@@ -58,7 +86,7 @@ async function init() {
 
   const photographerDatas = await getPhotographerDatas(photographerID);
   displayMediaCards(photographerDatas);
-  displayTotalLikes(photographerDatas.medias);
+  displayNbrDetails(photographerDatas);
 }
 
 init();
