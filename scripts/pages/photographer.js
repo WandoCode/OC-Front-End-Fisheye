@@ -44,7 +44,6 @@ function displayMediaCards(photographerDatas, sorting) {
 function displayNbrDetails(photographerDatas) {
   const main = document.querySelector("main");
   const totalLikes = getTotalLikes(photographerDatas.medias);
-  console.log(totalLikes);
 
   const priceContainer = document.createElement("p");
 
@@ -52,6 +51,7 @@ function displayNbrDetails(photographerDatas) {
   priceContainer.textContent = priceText;
 
   const notch = document.createElement("div");
+  notch.classList.add("notch");
 
   const likesContainer = document.createElement("p");
 

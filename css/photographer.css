@@ -24,13 +24,19 @@
   font-size: 60px;
   font-weight: 500;
   margin: 0;
+  color: #d3573c;
 }
 
 .photograph-header .localization {
   font-size: 24px;
   padding-bottom: 18px;
+  color: #901c1c;
 }
 
+.photograph-header blockquote {
+  font-size: 18px;
+  color: #525252;
+}
 .contact_button {
   font-size: 20px;
   font-weight: bold;
@@ -134,4 +140,27 @@ form input {
 
 .medias-section article span {
   padding-right: 10%;
+}
+
+.notch {
+  position: fixed;
+  bottom: 0;
+  right: 14%;
+  background-color: #db8876;
+  display: flex;
+  justify-content: space-around;
+  height: 70px;
+  width: 375px;
+  border-radius: 5px 5px 0 0;
+}
+
+.notch p {
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.notch p i {
+  margin-left: 7px;
 }
