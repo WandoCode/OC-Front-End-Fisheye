@@ -4,11 +4,31 @@
 
 .photograph-header {
   background-color: #fafafa;
-  height: 300px;
+  height: 310px;
   margin: 0 100px;
+  padding: 0 52px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.photograph-header div {
+  margin-bottom: 11px;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.photograph-header h1 {
+  font-size: 60px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.photograph-header .localization {
+  font-size: 24px;
+  padding-bottom: 18px;
 }
 
 .contact_button {
@@ -22,12 +42,7 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
-}
-
-.media-section {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 75px 120px;
+  margin: 28px 80px 0 0;
 }
 
 .modal {
@@ -82,4 +97,40 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.medias-section {
+  margin: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 23px 95px;
+  color: #901c1c;
+}
+
+.medias-section article img {
+  height: 300px;
+  width: 350px;
+  object-fit: cover;
+  border-radius: 7px;
+}
+
+.medias-section article > div {
+  padding-right: 3px;
+  padding-top: 3px;
+}
+.medias-section article div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 23px;
+  font-weight: 600;
+  height: 40px;
+}
+
+.medias-section article h2 {
+  font-size: 23px;
+}
+
+.medias-section article span {
+  padding-right: 10%;
 }
