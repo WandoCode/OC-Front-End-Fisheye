@@ -35,7 +35,7 @@ function displayData(photographerDatas) {
       media,
       photographerDatas.photographer.name
     );
-    mediaCard = mediasModel.getMediaCardDom();
+    mediaCard = mediasModel.getMediaCardDOM();
     mediasSection.append(mediaCard);
   });
 }
