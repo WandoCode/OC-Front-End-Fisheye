@@ -17,7 +17,7 @@ async function getPhotographerDatas(photographerId) {
   return { photographer, medias };
 }
 
-function displayData(photographerDatas) {
+function displayMediaCards(photographerDatas, sorting) {
   const photographHeader = document.querySelector(".photograph-header");
 
   const photographerModel = photographerFactory(photographerDatas.photographer);
@@ -28,7 +28,7 @@ function displayData(photographerDatas) {
   photographHeader.prepend(photographerDetails);
   photographHeader.append(photographerImg);
 
-  // TODO: Create media factory and calls it to display in the page here
+  // TODO: apply sorting on photographerDatas.medias before rendering using 'sorting' function parameter
   const mediasSection = document.querySelector(".medias-section");
   photographerDatas.medias.forEach((media) => {
     const mediasModel = mediaFactory(
@@ -39,13 +39,26 @@ function displayData(photographerDatas) {
     mediasSection.append(mediaCard);
   });
 }
+function displayTotalLikes(mediasData) {
+  const totalLikes = getTotalLikes(mediasData);
+  console.log(totalLikes);
+}
+
+function getTotalLikes(mediasData) {
+  let initialValue = 0;
+  const total = mediasData.reduce((sum, media) => {
+    return sum + parseInt(media.likes);
+  }, initialValue);
+  return total;
+}
 
 async function init() {
   const urlParams = new URL(document.location).searchParams;
   const photographerID = urlParams.get("id");
 
   const photographerDatas = await getPhotographerDatas(photographerID);
-  displayData(photographerDatas);
+  displayMediaCards(photographerDatas);
+  displayTotalLikes(photographerDatas.medias);
 }
 
 init();
