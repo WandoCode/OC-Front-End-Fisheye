@@ -26,6 +26,7 @@ function mediaFactory(media, photographerName) {
 
     const img = document.createElement("img");
     img.src = illustration;
+    img.alt = title;
 
     const detailsContainer = document.createElement("div");
 
