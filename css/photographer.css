@@ -51,6 +51,11 @@
   margin: 28px 80px 0 0;
 }
 
+.contact_button:hover,
+.contact_button:focus {
+  background-color: #db8876;
+  color: black;
+}
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -106,14 +111,25 @@ form input {
 }
 
 .medias-section {
-  margin: 100px;
+  margin: 0 100px;
+}
+
+.medias-section select {
+  font-family: "DM Sans", sans-serif;
+  border: none;
+  color: #fafafa;
+  background-color: #901c1c;
+  position: relative;
+}
+
+.gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 23px 95px;
   color: #901c1c;
 }
 
-.medias-section article img {
+.gallery article img {
   height: 300px;
   width: 350px;
   object-fit: cover;
@@ -121,11 +137,11 @@ form input {
   border-radius: 7px;
 }
 
-.medias-section article > div {
+.gallery article > div {
   padding-right: 3px;
   padding-top: 3px;
 }
-.medias-section article div {
+.gallery article div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -134,11 +150,11 @@ form input {
   height: 40px;
 }
 
-.medias-section article h2 {
+.gallery article h2 {
   font-size: 23px;
 }
 
-.medias-section article span {
+.gallery article span {
   padding-right: 10%;
 }
 

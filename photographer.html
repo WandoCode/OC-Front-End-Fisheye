@@ -24,7 +24,16 @@
           Contactez-moi
         </button>
       </section>
-      <div class="medias-section"></div>
+      <div class="medias-section">
+        <label for="sorting" class="sorting">Trier par
+        <select name="sorting" id="sorting-gallery">
+        </label>
+          <option value="popularity">Popularité</option>
+          <option value="date">Date</option>
+          <option value="title">Titre</option>
+        </select>
+        <div class="gallery"></div>
+      </div>
     </main>
     <div id="contact_modal">
       <div class="modal">
