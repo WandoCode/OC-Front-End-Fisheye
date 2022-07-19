@@ -87,7 +87,13 @@ function mediaFactory(media, photographerName) {
     const nbrLikes = icon.parentNode.parentNode.childNodes[0];
 
     // Add or remove a like following the clicked icon
-    likes = icon.classList.contains("fa-regular") ? likes + 1 : likes - 1;
+    if (icon.classList.contains("fa-regular")) {
+      likes += 1;
+      adaptNotch(1);
+    } else {
+      adaptNotch(-1);
+      likes -= 1;
+    }
 
     // Toggle between the empty and filled icon
     iconsArray.forEach((icon) => {
@@ -98,9 +104,19 @@ function mediaFactory(media, photographerName) {
       }
     });
     nbrLikes.textContent = likes;
-    //TODO: Faire une fct updateTotalLike qui recalcul le nbr total de like et update la valeur totale (il faut pouvoir communiquer la valeur en dehors de la fct factory quand la velur change, comment?)
   }
-
   return { getMediaCardDOM };
+}
+
+// Increase or decrease total nbr of likes displayed in the notch
+function adaptNotch(step = +1) {
+  const notch = document.querySelector(".notch");
+  const likesNotch = notch.childNodes[0].childNodes[0];
+
+  let totLikes = parseInt(likesNotch.textContent);
+
+  totLikes = step == 1 ? totLikes + 1 : totLikes - 1;
+
+  likesNotch.textContent = totLikes;
 }
 // TODO: structure des donénes pour les médias à afficher? Les grouper par photographes? Mélanger toute les images de tout le monde dans un fichier commun? Pas d'importance?
