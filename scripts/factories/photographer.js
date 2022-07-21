@@ -38,7 +38,6 @@ function photographerFactory(data) {
   function getUserPictureDOM() {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.alt = name;
 
     return img;
   }
@@ -49,6 +48,7 @@ function photographerFactory(data) {
 
     const anchor = document.createElement("a");
     anchor.href = profilURL;
+    anchor.ariaLabel = name;
 
     const img = getUserPictureDOM();
 
