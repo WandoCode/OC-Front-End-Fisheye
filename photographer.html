@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
@@ -16,7 +16,7 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Logo" />
     </header>
     <main id="main">
       <section class="photograph-header">
@@ -25,13 +25,14 @@
         </button>
       </section>
       <div class="medias-section">
-        <label for="sorting" class="sorting">Trier par
-        <select name="sorting" id="sorting-gallery">
-        </label>
-          <option value="popularity">Popularité</option>
-          <option value="date">Date</option>
-          <option value="title">Titre</option>
-        </select>
+        <label for="sorting" class="sorting">Trier par </label>
+        <div class="select">
+          <select name="sorting" id="sorting">
+            <option value="popularity">Popularité</option>
+            <option value="date">Date</option>
+            <option value="title">Titre</option>
+          </select>
+        </div>
         <div class="gallery"></div>
       </div>
     </main>
@@ -57,3 +58,5 @@
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
+<!-- TODO: faire une review des erreurs accessibilité avec l'extension WAVE;
+Idem avec headingMaps -->

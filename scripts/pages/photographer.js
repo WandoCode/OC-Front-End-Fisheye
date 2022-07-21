@@ -1,14 +1,15 @@
+// Retrieve datas from DB
 async function getPhotographerDatas(photographerId) {
   const reponse = await fetch("../../data/photographers.json");
   const datas = await reponse.json();
 
-  // Get the given photographer user entry in DB
+  // Get the given photographer entry in DB
   const photographers = datas.photographers;
   const photographer = photographers.find((photographer) => {
     return photographer.id === parseInt(photographerId);
   });
 
-  // Get the given photographer media entries in DB
+  // Get the given photographer medias entries in DB
   const mediasDatas = datas.media;
   const medias = mediasDatas.filter((media) => {
     return media.photographerId === parseInt(photographerId);
@@ -16,6 +17,8 @@ async function getPhotographerDatas(photographerId) {
 
   return { photographer, medias };
 }
+
+// Display photographer header
 function displayPhotographerCard(photographer) {
   const photographHeader = document.querySelector(".photograph-header");
 
@@ -28,6 +31,7 @@ function displayPhotographerCard(photographer) {
   photographHeader.append(photographerImg);
 }
 
+// Display medias in media gallery
 function displayMediaCards(photographer, medias) {
   const gallery = document.querySelector(".gallery");
 
@@ -39,6 +43,7 @@ function displayMediaCards(photographer, medias) {
 }
 
 // Display total nbr of likes and price for the photographer
+// TODO: passer ca dans la factory photographer
 function displayNbrDetails(photographerDatas) {
   const main = document.querySelector("main");
   const totalLikes = getTotalLikes(photographerDatas.medias);
@@ -70,11 +75,14 @@ function displayNbrDetails(photographerDatas) {
 }
 
 // Calcul the total number of likes for the photographer
+// TODO: passer ca dans la factory photographer
 function getTotalLikes(mediasData) {
   let initialValue = 0;
+
   const total = mediasData.reduce((sum, media) => {
     return sum + parseInt(media.likes);
   }, initialValue);
+
   return total;
 }
 
@@ -106,27 +114,37 @@ function sortMedias(e, medias, defaultValue) {
       break;
   }
 }
+
+// Handle display of sorted medias
 function handleSort(e, photographerDatas) {
+  // Sort medias
   sortMedias(e, photographerDatas.medias);
 
+  // Rerender
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
+
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
 }
 
 async function init() {
+  // Get photgrapher id form url
   const urlParams = new URL(document.location).searchParams;
-
   const photographerID = urlParams.get("id");
 
+  // Get datas from DB
   const photographerDatas = await getPhotographerDatas(photographerID);
+
+  // Initial sorting of medias
   sortMedias(0, photographerDatas.medias, "popularity");
 
+  // Display page
   displayPhotographerCard(photographerDatas.photographer);
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
   displayNbrDetails(photographerDatas);
 
-  const select = document.querySelector("#sorting-gallery");
+  // Listen for change of sorting value
+  const select = document.querySelector("#sorting");
   select.addEventListener("change", (e) => handleSort(e, photographerDatas));
 }
 

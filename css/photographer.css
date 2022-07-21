@@ -114,12 +114,17 @@ form input {
   margin: 0 100px;
 }
 
+/* TODO: Bonnes infos pour styler le select : https://moderncss.dev/custom-select-styles-with-pure-css/ */
 .medias-section select {
+  appearance: none;
   font-family: "DM Sans", sans-serif;
   border: none;
   color: #fafafa;
   background-color: #901c1c;
-  position: relative;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  outline: none;
 }
 
 .gallery {
