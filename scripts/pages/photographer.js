@@ -37,7 +37,7 @@ function displayMediaCards(photographer, medias) {
 
   medias.forEach((media) => {
     const mediasModel = mediaFactory(media, photographer.name);
-    mediaCard = mediasModel.getMediaCardDOM();
+    mediaCard = mediasModel.getCardDOM();
     gallery.append(mediaCard);
   });
 }
@@ -105,7 +105,6 @@ function sortMedias(e, medias, defaultValue) {
 
     case "popularity":
       medias.sort((a, b) => {
-        console.log(1);
         return a.likes - b.likes;
       });
       break;

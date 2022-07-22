@@ -1,32 +1,31 @@
 function mediaFactory(media, photographerName) {
-  let { title, image, likes } = media;
+  let { title, image, likes, video } = media;
 
-  // Generate media card following media type
-  function getMediaCardDOM() {
-    if (media.image) {
-      const illustration = getMediaPath();
-      return getCardDOM(illustration);
-    }
-    if (media.video) {
-      const illustration = getVideoThumbnail();
-      return getCardDOM(illustration);
-    }
-  }
-
-  // Create the media path in the DB
-  function getMediaPath() {
+  // Create the media node following media type
+  function getMediaDOM() {
     const surname = photographerName.split(" ")[0];
-    const mediaPath = `../../assets/photographers/medias/${surname}/${image}`;
-    return mediaPath;
+    if (media.video) {
+      const videoNode = document.createElement("video");
+      const source = document.createElement("source");
+      console.log(`../../assets/photographers/medias/${surname}/${video}`);
+      source.src = `../../assets/photographers/medias/${surname}/${video}`;
+      source.type = "video/mp4";
+      videoNode.append(source);
+      return videoNode;
+    }
+    if (media.image) {
+      const img = document.createElement("img");
+      img.src = `../../assets/photographers/medias/${surname}/${image}`;
+      img.alt = title;
+      return img;
+    }
   }
 
   // Create a card for a media
-  function getCardDOM(illustration) {
+  function getCardDOM() {
     const article = document.createElement("article");
 
-    const img = document.createElement("img");
-    img.src = illustration;
-    img.alt = title;
+    mediaNode = getMediaDOM();
 
     const detailsContainer = document.createElement("div");
 
@@ -36,7 +35,7 @@ function mediaFactory(media, photographerName) {
     const likesElement = createLikeDOM();
 
     // Add image to the card
-    article.append(img);
+    article.append(mediaNode);
 
     // Add details to the card (title, nbr likes)
     article.append(detailsContainer);
@@ -52,7 +51,7 @@ function mediaFactory(media, photographerName) {
 
     const nbrLikes = document.createElement("span");
     nbrLikes.textContent = `${likes}`;
-
+    nbrLikes.ariaLabel = "likes";
     const iconsContainer = document.createElement("div");
 
     const iconEmpty = document.createElement("i");
@@ -72,13 +71,6 @@ function mediaFactory(media, photographerName) {
     iconsContainer.onclick = toggleLike;
 
     return likeContainer;
-  }
-
-  // Create the thumbnail path in the DB
-  function getVideoThumbnail() {
-    // TODO: A adapter quand je sais quelles images je dois utiliser ou comment les récupérer directement depuis la video
-    const thumbnailPath = `../../assets/images/icon-video.png`;
-    return thumbnailPath;
   }
 
   // Toogle like icon and nbr of likes
@@ -106,18 +98,20 @@ function mediaFactory(media, photographerName) {
     });
     nbrLikes.textContent = likes;
   }
-  return { getMediaCardDOM };
+
+  // Increase or decrease total nbr of likes displayed in the notch
+  function adaptNotch(step = +1) {
+    const notch = document.querySelector(".notch");
+    const likesNotch = notch.childNodes[0].childNodes[0];
+
+    let totLikes = parseInt(likesNotch.textContent);
+
+    totLikes = step == 1 ? totLikes + 1 : totLikes - 1;
+
+    likesNotch.textContent = totLikes;
+  }
+
+  return { getCardDOM };
 }
 
-// Increase or decrease total nbr of likes displayed in the notch
-function adaptNotch(step = +1) {
-  const notch = document.querySelector(".notch");
-  const likesNotch = notch.childNodes[0].childNodes[0];
-
-  let totLikes = parseInt(likesNotch.textContent);
-
-  totLikes = step == 1 ? totLikes + 1 : totLikes - 1;
-
-  likesNotch.textContent = totLikes;
-}
 // TODO: structure des donénes pour les médias à afficher? Les grouper par photographes? Mélanger toute les images de tout le monde dans un fichier commun? Pas d'importance?
