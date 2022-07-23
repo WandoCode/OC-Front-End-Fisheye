@@ -1,4 +1,4 @@
-// Initialize photographer page
+/* Initialize photographer page */
 async function init() {
   const photographerID = getPhotographerId();
 
@@ -22,14 +22,14 @@ async function init() {
   handleSortSelect(photographerDatas);
 }
 
-// Get photgrapher id
+/* Get photgrapher id */
 const getPhotographerId = () => {
   const urlParams = new URL(document.location).searchParams;
 
   return urlParams.get("id");
 };
 
-// Retrieve datas from DB
+/* Retrieve datas from DB */
 async function getPhotographerDatas(photographerId) {
   const reponse = await fetch("../../data/photographers.json");
   const datas = await reponse.json();
@@ -49,7 +49,7 @@ async function getPhotographerDatas(photographerId) {
   return { photographer, medias };
 }
 
-// Display photographer header
+/* Display photographer header */
 function displayPhotographerCard(photographerModel) {
   const photographHeader = document.querySelector(".photograph-header");
 
@@ -60,7 +60,7 @@ function displayPhotographerCard(photographerModel) {
   photographHeader.append(photographerImg);
 }
 
-// Display medias in media gallery
+/* Display medias in media gallery */
 function displayMediaCards(photographer, medias) {
   const gallery = document.querySelector(".gallery");
 
@@ -71,14 +71,14 @@ function displayMediaCards(photographer, medias) {
   });
 }
 
-// Display the notch on screen (price/tot. likes)
+/* Display the notch on screen (price/tot. likes) */
 function displayNotch(photographerModel) {
   const main = document.querySelector("main");
   const notch = photographerModel.getNotchDOM();
   main.append(notch);
 }
 
-// Sort the medias array following the given parameter
+/* Sort the medias array following the given parameter */
 function sortMedias(value, medias) {
   const sorting = {
     title: () =>
@@ -98,7 +98,7 @@ function sortMedias(value, medias) {
   sorting[value]();
 }
 
-// Handle display of sorted medias
+/* Handle display of sorted medias */
 function handleSort(value, photographerDatas) {
   // Sort medias
   sortMedias(value, photographerDatas.medias);
@@ -110,7 +110,7 @@ function handleSort(value, photographerDatas) {
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
 }
 
-// Handle sort menu
+/* Handle sort menu */
 const handleSortSelect = (photographerDatas) => {
   const selecMenuModel = selectMenu();
 

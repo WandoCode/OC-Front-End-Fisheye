@@ -113,23 +113,73 @@ form input {
 .medias-section {
   margin: 0 100px;
 }
-.sorting {
+.sort-menu {
   position: relative;
+  width: 170px;
 }
 .select {
+  text-align: left;
+  background-color: #901c1c;
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+  padding: 23px 20px;
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
 }
-.select[open="true"] {
-  background-color: red;
+
+.select:after {
+  content: "";
+  position: absolute;
+  border-top: 3px white solid;
+  border-right: 3px white solid;
+  height: 9px;
+  width: 9px;
+  transform: rotate(135deg);
+  right: 15%;
+  top: 35%;
 }
+
+.select[open="true"]:after {
+  transform: rotateX(180deg) rotate(135deg);
+  top: 50%;
+}
+
 .select-dropdown {
+  width: 100%;
+  background-color: #901c1c;
   position: absolute;
   top: 100%;
+  left: 0;
   display: none;
   list-style: none;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 0 5px 5px;
 }
+
+.option {
+  border-top: 1px white solid;
+  padding: 14px 10px;
+  margin: 0 10px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.select[open="true"] {
+  border-radius: 5px 5px 0 0;
+  padding-bottom: 14px;
+}
+
 .select[open="true"] + .select-dropdown {
   display: inline;
 }
+
 .option-hide {
   display: none;
 }
