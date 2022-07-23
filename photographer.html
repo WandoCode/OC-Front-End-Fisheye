@@ -31,17 +31,21 @@
         </button>
       </section>
       <div class="medias-section">
-        <label for="sorting select"> Trier par </label>
-        <div class="sort-menu">
-          <!-- TODO: Ajouter aria -->
-          <button class="select" id="btn-select" open="false">
-            Popularité
-          </button>
-          <ul class="select-dropdown">
-            <li class="option option-hide" value="popularity">Popularité</li>
-            <li class="option" value="date">Date</li>
-            <li class="option" value="title">Titre</li>
-          </ul>
+        <div class="select-container">
+          <label for="btn-select"> Trier par </label>
+          <div class="sort-menu">
+            <!-- TODO: Ajouter aria -->
+            <button class="select" id="btn-select" open="false">
+              Popularité
+            </button>
+            <ul class="select-dropdown">
+              <li class="option option-hide" value="popularity" tabindex="0">
+                Popularité
+              </li>
+              <li class="option" value="date" tabindex="0">Date</li>
+              <li class="option" value="title" tabindex="0">Titre</li>
+            </ul>
+          </div>
         </div>
         <div class="gallery"></div>
       </div>
@@ -49,13 +53,22 @@
     <div id="contact_modal">
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
+          <div class="modal-headings">
+            <h2>Contactez-moi</h2>
+            <h3 id="photographer-name"></h3>
+          </div>
           <img src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
         <form>
           <div>
-            <label>Prénom</label>
-            <input />
+            <label for="name">Prénom</label>
+            <input type="text" name="name" id="name" />
+            <label for="family-name">Nom</label>
+            <input type="text" name="family-name" id="family-name" />
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" />
+            <label for="message">Votre message</label>
+            <textarea name="message" id="message"></textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>

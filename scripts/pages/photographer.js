@@ -20,13 +20,21 @@ async function init() {
 
   // Launch select menu logic/listeners
   handleSortSelect(photographerDatas);
+
+  // Launch contact logic/listeners
+  handleModal(photographerDatas.photographer.name);
 }
 
 /* Get photgrapher id */
 const getPhotographerId = () => {
   const urlParams = new URL(document.location).searchParams;
 
-  return urlParams.get("id");
+  const userId = urlParams.get("id");
+  if (userId) {
+    return userId;
+  } else {
+    throw new Error("No id parameter found in URL");
+  }
 };
 
 /* Retrieve datas from DB */

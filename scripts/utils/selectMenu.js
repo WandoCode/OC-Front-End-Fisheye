@@ -25,20 +25,20 @@ function selectMenu(defaultValue = "popularity") {
       option.addEventListener("click", (e) => {
         const value = e.target.getAttribute("value");
 
-        // Affiche le choix dans le boutton;
+        // Display chooice in btn;
         btnSelect.textContent = textValue[value];
-        // Reactive tout les choix
+        // Reactive all choices
         const hideOption = document.querySelector(".option-hide");
         hideOption.classList.remove("option-hide");
-        // Desactive la valeur choisie des choix possibles
+        // disable chosen value from possible choices
         option.classList.add("option-hide");
-        // Ferme le menu
+        // Close menu
         btnSelect.setAttribute("open", "false");
       });
     });
   }
 
-  // Ecoute le menu select et appel une cb si la valeur choisie change
+  /* Listen select menu and call a cb following the choosen value */
   const monitorSortingValue = (cbFct) => {
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
