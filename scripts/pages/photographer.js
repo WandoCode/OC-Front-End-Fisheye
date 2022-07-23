@@ -87,9 +87,7 @@ function getTotalLikes(mediasData) {
 }
 
 // Sort the medias array following the given parameter
-function sortMedias(e, medias, defaultValue) {
-  const value = defaultValue ? defaultValue : e.target.value;
-
+function sortMedias(value, medias, defaultValue) {
   switch (value) {
     case "title":
       medias.sort((a, b) => {
@@ -115,9 +113,10 @@ function sortMedias(e, medias, defaultValue) {
 }
 
 // Handle display of sorted medias
-function handleSort(e, photographerDatas) {
+function handleSort(value, photographerDatas) {
+  console.log(value);
   // Sort medias
-  sortMedias(e, photographerDatas.medias);
+  sortMedias(value, photographerDatas.medias);
 
   // Rerender
   const gallery = document.querySelector(".gallery");
@@ -143,44 +142,10 @@ async function init() {
   displayNbrDetails(photographerDatas);
 
   // Listen for change of sorting value
-
-  handleSelectMenu();
-}
-
-// Handle select sorting menu
-function handleSelectMenu() {
-  const textValue = {
-    popularity: "Popularité",
-    date: "Date",
-    title: "Titre",
-  };
-
-  const btnSelect = document.getElementById("btn-select");
-
-  // Handle open/close of menu
-  btnSelect.addEventListener("click", (e) => {
-    const isOpened = btnSelect.getAttribute("open");
-    if (isOpened === "true") {
-      btnSelect.setAttribute("open", "false");
-    } else if (isOpened === "false") {
-      btnSelect.setAttribute("open", "true");
-    }
-  });
-
-  // Handle options selection
-  const options = document.querySelectorAll(".option");
-  options.forEach((option) => {
-    option.addEventListener("click", (e) => {
-      const value = e.target.getAttribute("value");
-
-      // Affiche le choix dans le boutton;
-      btnSelect.textContent = textValue[value];
-      // Reactive tout les choix
-      const hideOption = document.querySelector(".option-hide");
-      hideOption.classList.remove("option-hide");
-      // Desactive la valeur choisie des choix possibles
-      option.classList.add("option-hide");
-    });
+  const selecMenuModel = displaySelectMenu();
+  selecMenuModel.initMenu();
+  selecMenuModel.monitorSortingValue((value) => {
+    handleSort(value, photographerDatas);
   });
 }
 
