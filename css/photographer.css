@@ -56,40 +56,51 @@
   background-color: #db8876;
   color: black;
 }
-.modal {
+#contact_modal {
+  background-color: #c4c4c466;
   position: fixed;
-  top: 2vh;
+  top: 0;
   left: 0;
   bottom: 0;
   right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
   border-radius: 5px;
   background-color: #db8876;
   width: 670px;
-  height: 92vh;
+  height: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
-  margin: auto;
 }
 
 .modal header {
+  display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
+  overflow-x: visible;
+  white-space: nowrap;
 }
 
 .modal header img {
   cursor: pointer;
 }
-.modal .modal-headings {
-  margin-bottom: 40px;
-}
-.modal header h2,
-.modal header h3 {
+
+.modal header h1 {
+  color: black;
   font-size: 64px;
   font-weight: normal;
   text-align: left;
+  margin-right: 0;
+  margin-top: -25px;
+  line-height: 1.2;
 }
 
 form {
