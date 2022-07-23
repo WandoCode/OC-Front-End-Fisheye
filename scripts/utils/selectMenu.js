@@ -1,7 +1,5 @@
 // Handle select sorting menu
-function displaySelectMenu(defaultValue = "popularity") {
-  let currentValue = defaultValue;
-
+function selectMenu(defaultValue = "popularity") {
   const btnSelect = document.getElementById("btn-select");
   const options = document.querySelectorAll(".option");
 
@@ -40,16 +38,15 @@ function displaySelectMenu(defaultValue = "popularity") {
     });
   }
 
+  // Ecoute le menu select et appel une cb si la valeur choisie change
   const monitorSortingValue = (cbFct) => {
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
         const newValue = e.target.getAttribute("value");
-        if (newValue !== currentValue) {
-          currentValue = newValue;
-          cbFct(currentValue);
-        }
+        cbFct(newValue);
       });
     });
   };
+
   return { initMenu, monitorSortingValue };
 }

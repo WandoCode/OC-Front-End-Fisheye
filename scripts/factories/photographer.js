@@ -1,4 +1,4 @@
-function photographerFactory(data) {
+function photographerFactory(data, mediasData) {
   const { name, portrait, id, tagline, price, city, country } = data;
 
   const picture = `/assets/photographers/portraits/${portrait}`;
@@ -78,11 +78,53 @@ function photographerFactory(data) {
     return article;
   }
 
+  // Calcul the total number of likes for the photographer
+  function getTotalLikes() {
+    let initialValue = 0;
+
+    const total = mediasData.reduce((sum, media) => {
+      return sum + parseInt(media.likes);
+    }, initialValue);
+
+    return total;
+  }
+
+  // Display total nbr of likes and price for the photographer
+  function getNotchDOM() {
+    const totalLikes = getTotalLikes();
+
+    const priceContainer = document.createElement("p");
+
+    const priceText = `${price}€ / jour`;
+    priceContainer.textContent = priceText;
+
+    const notch = document.createElement("div");
+    notch.classList.add("notch");
+
+    const likesContainer = document.createElement("p");
+
+    const nbrLikes = document.createElement("span");
+    nbrLikes.textContent = `${totalLikes}`;
+
+    const icon = document.createElement("i");
+    icon.classList.add("fa-heart");
+    icon.classList.add("fa-solid");
+
+    notch.append(likesContainer);
+    notch.append(priceContainer);
+
+    likesContainer.append(nbrLikes);
+    likesContainer.append(icon);
+
+    return notch;
+  }
+
   return {
     name,
     picture,
     getUserCardDOM,
     getUserPictureDOM,
     getUserDetailsDOM,
+    getNotchDOM,
   };
 }

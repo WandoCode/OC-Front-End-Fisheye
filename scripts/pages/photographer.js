@@ -19,10 +19,8 @@ async function getPhotographerDatas(photographerId) {
 }
 
 // Display photographer header
-function displayPhotographerCard(photographer) {
+function displayPhotographerCard(photographerModel, photographer, medias) {
   const photographHeader = document.querySelector(".photograph-header");
-
-  const photographerModel = photographerFactory(photographer);
 
   const photographerDetails = photographerModel.getUserDetailsDOM();
   const photographerImg = photographerModel.getUserPictureDOM();
@@ -40,50 +38,6 @@ function displayMediaCards(photographer, medias) {
     mediaCard = mediasModel.getCardDOM();
     gallery.append(mediaCard);
   });
-}
-
-// Display total nbr of likes and price for the photographer
-// TODO: passer ca dans la factory photographer
-function displayNbrDetails(photographerDatas) {
-  const main = document.querySelector("main");
-  const totalLikes = getTotalLikes(photographerDatas.medias);
-
-  const priceContainer = document.createElement("p");
-
-  const priceText = `${photographerDatas.photographer.price}€ / jour`;
-  priceContainer.textContent = priceText;
-
-  const notch = document.createElement("div");
-  notch.classList.add("notch");
-
-  const likesContainer = document.createElement("p");
-
-  const nbrLikes = document.createElement("span");
-  nbrLikes.textContent = `${totalLikes}`;
-
-  const icon = document.createElement("i");
-  icon.classList.add("fa-heart");
-  icon.classList.add("fa-solid");
-
-  main.append(notch);
-
-  notch.append(likesContainer);
-  notch.append(priceContainer);
-
-  likesContainer.append(nbrLikes);
-  likesContainer.append(icon);
-}
-
-// Calcul the total number of likes for the photographer
-// TODO: passer ca dans la factory photographer
-function getTotalLikes(mediasData) {
-  let initialValue = 0;
-
-  const total = mediasData.reduce((sum, media) => {
-    return sum + parseInt(media.likes);
-  }, initialValue);
-
-  return total;
 }
 
 // Sort the medias array following the given parameter
@@ -114,7 +68,6 @@ function sortMedias(value, medias, defaultValue) {
 
 // Handle display of sorted medias
 function handleSort(value, photographerDatas) {
-  console.log(value);
   // Sort medias
   sortMedias(value, photographerDatas.medias);
 
@@ -125,26 +78,49 @@ function handleSort(value, photographerDatas) {
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
 }
 
+// Display the notch on screen (price/tot. likes)
+function displayNbrDetails(photographerModel, photographer, medias) {
+  const main = document.querySelector("main");
+  const notch = photographerModel.getNotchDOM();
+  main.append(notch);
+}
+
+// Initialize photographer page
 async function init() {
   // Get photgrapher id form url
   const urlParams = new URL(document.location).searchParams;
   const photographerID = urlParams.get("id");
 
-  // Get datas from DB
+  // Get photographer datas from DB
   const photographerDatas = await getPhotographerDatas(photographerID);
 
   // Initial sorting of medias
   sortMedias(0, photographerDatas.medias, "popularity");
 
-  // Display page
-  displayPhotographerCard(photographerDatas.photographer);
-  displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
-  displayNbrDetails(photographerDatas);
+  const photographerModel = photographerFactory(
+    photographerDatas.photographer,
+    photographerDatas.medias
+  );
 
-  // Listen for change of sorting value
-  const selecMenuModel = displaySelectMenu();
+  // Display page
+  displayPhotographerCard(
+    photographerModel,
+    photographerDatas.photographer,
+    photographerDatas.medias
+  );
+
+  displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
+  displayNbrDetails(
+    photographerModel,
+    photographerDatas.photographer,
+    photographerDatas.medias
+  );
+
+  // Launch select menu logic/listeners
+  const selecMenuModel = selectMenu();
   selecMenuModel.initMenu();
   selecMenuModel.monitorSortingValue((value) => {
+    // Trigger sorting
     handleSort(value, photographerDatas);
   });
 }
