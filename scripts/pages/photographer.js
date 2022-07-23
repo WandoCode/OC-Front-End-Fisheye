@@ -143,8 +143,45 @@ async function init() {
   displayNbrDetails(photographerDatas);
 
   // Listen for change of sorting value
-  const select = document.querySelector("#sorting");
-  select.addEventListener("change", (e) => handleSort(e, photographerDatas));
+
+  handleSelectMenu();
+}
+
+// Handle select sorting menu
+function handleSelectMenu() {
+  const textValue = {
+    popularity: "Popularité",
+    date: "Date",
+    title: "Titre",
+  };
+
+  const btnSelect = document.getElementById("btn-select");
+
+  // Handle open/close of menu
+  btnSelect.addEventListener("click", (e) => {
+    const isOpened = btnSelect.getAttribute("open");
+    if (isOpened === "true") {
+      btnSelect.setAttribute("open", "false");
+    } else if (isOpened === "false") {
+      btnSelect.setAttribute("open", "true");
+    }
+  });
+
+  // Handle options selection
+  const options = document.querySelectorAll(".option");
+  options.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      const value = e.target.getAttribute("value");
+
+      // Affiche le choix dans le boutton;
+      btnSelect.textContent = textValue[value];
+      // Reactive tout les choix
+      const hideOption = document.querySelector(".option-hide");
+      hideOption.classList.remove("option-hide");
+      // Desactive la valeur choisie des choix possibles
+      option.classList.add("option-hide");
+    });
+  });
 }
 
 init();

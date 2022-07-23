@@ -113,20 +113,26 @@ form input {
 .medias-section {
   margin: 0 100px;
 }
-
-/* TODO: Bonnes infos pour styler le select : https://moderncss.dev/custom-select-styles-with-pure-css/ */
-.medias-section select {
-  appearance: none;
-  font-family: "DM Sans", sans-serif;
-  border: none;
-  color: #fafafa;
-  background-color: #901c1c;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  outline: none;
+.sorting {
+  position: relative;
 }
-
+.select {
+}
+.select[open="true"] {
+  background-color: red;
+}
+.select-dropdown {
+  position: absolute;
+  top: 100%;
+  display: none;
+  list-style: none;
+}
+.select[open="true"] + .select-dropdown {
+  display: inline;
+}
+.option-hide {
+  display: none;
+}
 .gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -134,7 +140,8 @@ form input {
   color: #901c1c;
 }
 
-.gallery article img {
+.gallery article img,
+.gallery article video {
   height: 300px;
   width: 350px;
   object-fit: cover;

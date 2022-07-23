@@ -7,7 +7,6 @@ function mediaFactory(media, photographerName) {
     if (media.video) {
       const videoNode = document.createElement("video");
       const source = document.createElement("source");
-      console.log(`../../assets/photographers/medias/${surname}/${video}`);
       source.src = `../../assets/photographers/medias/${surname}/${video}`;
       source.type = "video/mp4";
       videoNode.append(source);

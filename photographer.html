@@ -31,14 +31,17 @@
         </button>
       </section>
       <div class="medias-section">
-        <label for="sorting" class="sorting">Trier par </label>
-        <div class="select">
-          <select name="sorting" id="sorting">
-            <option value="popularity">Popularité</option>
-            <option value="date">Date</option>
-            <option value="title">Titre</option>
-          </select>
-        </div>
+        <label for="sorting select" class="sorting"
+          >Trier par
+          <button class="select" id="btn-select" open="false">
+            Popularité
+          </button>
+          <ul class="select-dropdown">
+            <li class="option option-hide" value="popularity">Popularité</li>
+            <li class="option" value="date">Date</li>
+            <li class="option" value="title">Titre</li>
+          </ul>
+        </label>
         <div class="gallery"></div>
       </div>
     </main>
