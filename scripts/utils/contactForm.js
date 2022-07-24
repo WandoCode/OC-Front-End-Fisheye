@@ -1,4 +1,4 @@
-const handleModal = (name) => {
+const initModal = (name) => {
   // Modal dynamic content
   fillPhotographerName(name);
 
@@ -11,6 +11,7 @@ const handleModal = (name) => {
   btnSubmit.addEventListener("click", handleModalSubmission);
 };
 
+/* Show modal on screen */
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "flex";

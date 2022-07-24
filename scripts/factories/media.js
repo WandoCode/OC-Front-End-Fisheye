@@ -10,13 +10,17 @@ function mediaFactory(media, photographerName) {
       source.src = `../../assets/photographers/medias/${surname}/${video}`;
       source.type = "video/mp4";
       videoNode.append(source);
+      videoNode.classList.add("media");
+      videoNode.setAttribute("data-id", media.id);
+
       return videoNode;
     }
     if (media.image) {
       const img = document.createElement("img");
       img.src = `../../assets/photographers/medias/${surname}/${image}`;
       img.alt = title;
-
+      img.classList.add("media");
+      img.setAttribute("data-id", media.id);
       return img;
     }
   }
@@ -111,7 +115,5 @@ function mediaFactory(media, photographerName) {
     likesNotch.textContent = totLikes;
   }
 
-  return { getCardDOM };
+  return { getCardDOM, getMediaDOM };
 }
-
-// TODO: structure des donénes pour les médias à afficher? Les grouper par photographes? Mélanger toute les images de tout le monde dans un fichier commun? Pas d'importance?

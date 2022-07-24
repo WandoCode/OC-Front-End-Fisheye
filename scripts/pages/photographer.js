@@ -19,10 +19,13 @@ async function init() {
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
 
   // Launch select menu logic/listeners
-  handleSortSelect(photographerDatas);
+  initSelectMenu(photographerDatas);
 
   // Launch contact logic/listeners
-  handleModal(photographerDatas.photographer.name);
+  initModal(photographerDatas.photographer.name);
+
+  // Initialize lightboxes
+  initLightboxes(photographerDatas.medias, photographerDatas.photographer.name);
 }
 
 /* Get photgrapher id */
@@ -76,13 +79,24 @@ function displayMediaCards(photographer, medias) {
     const mediasModel = mediaFactory(media, photographer.name);
     mediaCard = mediasModel.getCardDOM();
     gallery.append(mediaCard);
-
-    //LightBox
-    mediaCard.addEventListener("click", () => {
-      initLightbox(media, medias, photographer.name);
-    });
   });
 }
+
+/* Listen to open dedicated lightbox on click */
+const initLightboxes = (medias, photographerName) => {
+  const mediaNodes = document.querySelectorAll(".media");
+
+  mediaNodes.forEach((media) => {
+    const mediaID = parseInt(media.getAttribute("data-id"));
+    const mediaDatas = medias.find((a) => {
+      return a.id === mediaID;
+    });
+
+    media.addEventListener("click", () =>
+      handleLightbox(mediaDatas, medias, photographerName)
+    );
+  });
+};
 
 /* Display the notch on screen (price/tot. likes) */
 function displayNotch(photographerModel) {
@@ -111,8 +125,19 @@ function sortMedias(value, medias) {
   sorting[value]();
 }
 
-/* Handle display of sorted medias */
-function handleSort(value, photographerDatas) {
+/* Handle sort menu */
+const initSelectMenu = (photographerDatas) => {
+  const selecMenuModel = selectMenu();
+
+  selecMenuModel.initMenu();
+  selecMenuModel.monitorSortingValue((value) => {
+    // Trigger sorting
+    rerenderMedias(value, photographerDatas);
+  });
+};
+
+/* Rerender display of sorted medias */
+function rerenderMedias(value, photographerDatas) {
   // Sort medias
   sortMedias(value, photographerDatas.medias);
 
@@ -123,15 +148,6 @@ function handleSort(value, photographerDatas) {
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
 }
 
-/* Handle sort menu */
-const handleSortSelect = (photographerDatas) => {
-  const selecMenuModel = selectMenu();
-
-  selecMenuModel.initMenu();
-  selecMenuModel.monitorSortingValue((value) => {
-    // Trigger sorting
-    handleSort(value, photographerDatas);
-  });
-};
-
 init();
+
+// TODO: Attention: ajouter un like ouvre la lightbox

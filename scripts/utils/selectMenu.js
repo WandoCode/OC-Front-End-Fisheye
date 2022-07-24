@@ -1,5 +1,5 @@
 // Handle select sorting menu
-function selectMenu(defaultValue = "popularity") {
+function selectMenu() {
   const btnSelect = document.getElementById("btn-select");
   const options = document.querySelectorAll(".option");
 
@@ -9,6 +9,7 @@ function selectMenu(defaultValue = "popularity") {
     title: "Titre",
   };
 
+  /* Initialize select menu */
   function initMenu() {
     // Handle open/close of menu
     btnSelect.addEventListener("click", (e) => {
@@ -25,20 +26,21 @@ function selectMenu(defaultValue = "popularity") {
       option.addEventListener("click", (e) => {
         const value = e.target.getAttribute("value");
 
-        // Display chooice in btn;
+        // Change the value in btn by the clicked value
         btnSelect.textContent = textValue[value];
-        // Reactive all choices
+
         const hideOption = document.querySelector(".option-hide");
         hideOption.classList.remove("option-hide");
-        // disable chosen value from possible choices
+
         option.classList.add("option-hide");
+
         // Close menu
         btnSelect.setAttribute("open", "false");
       });
     });
   }
 
-  /* Listen select menu and call a cb following the choosen value */
+  /* Launch listeners for select menu; Execute cb fct when event happens */
   const monitorSortingValue = (cbFct) => {
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
