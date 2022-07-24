@@ -21,11 +21,8 @@
   object-position: center;
 }
 
-.lightbox .fa-xmark-large {
-  color: red;
+.lightbox .fa-xmark {
   font-size: 25px;
   height: 20px;
   width: 20px;
-  border: 2px green solid;
-  z-index: 2;
 }

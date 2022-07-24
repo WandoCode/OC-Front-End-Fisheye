@@ -79,7 +79,7 @@ function displayMediaCards(photographer, medias) {
 
     //LightBox
     mediaCard.addEventListener("click", () => {
-      handleLightbox(media, medias, photographer.name);
+      initLightbox(media, medias, photographer.name);
     });
   });
 }

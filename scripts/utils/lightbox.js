@@ -1,20 +1,45 @@
-const handleLightbox = (media, medias, photographerName) => {
-  openLightbox();
-  displayMedia(media, photographerName);
-};
+/* DOM node */
+const closeBtn = document.querySelector(".close-lightbox");
+const nextMediaBtn = document.querySelector(".next-media");
+const prevMediaBtn = document.querySelector(".prev-media");
+const lightbox = document.querySelector(".lightbox");
+const mediaContainer = document.querySelector(".media-container");
+
+/* Object constructor for navigation between medias */
+function LightboxMediaNavigation(media, medias) {
+  this.currentMediaIndex = (() => {
+    return medias.findIndex((a) => {
+      return a.id === media.id;
+    });
+  })();
+
+  this.nextMedia = () => {
+    const nextIndex = (this.currentMediaIndex + 1) % medias.length;
+    const rep = medias.at(nextIndex);
+    this.currentMediaIndex = nextIndex;
+    return rep;
+  };
+
+  this.prevMedia = () => {
+    const prevIndex = (this.currentMediaIndex - 1) % medias.length;
+    const rep = medias.at(prevIndex);
+    this.currentMediaIndex = prevIndex;
+    return rep;
+  };
+}
 
 const closeLightbox = () => {
-  const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";
-  //TODO: retirer l'image du container qd lightbox fermée
 };
-const openLightbox = () => {
-  const lightbox = document.querySelector(".lightbox");
+
+const displayLightbox = () => {
   lightbox.style.display = "block";
 };
 
 const displayMedia = (media, photographerName) => {
-  const lightbox = document.querySelector(".media-container");
+  // Remove precedent picture if present
+  mediaContainer.innerHTML = "";
+
   const surname = photographerName.split(" ")[0];
 
   if (media.image) {
@@ -22,7 +47,7 @@ const displayMedia = (media, photographerName) => {
     const img = document.createElement("img");
     img.src = `../../assets/photographers/medias/${surname}/${media.image}`;
     img.alt = media.title;
-    lightbox.append(img);
+    mediaContainer.append(img);
   }
   if (media.video) {
     const videoNode = document.createElement("video");
@@ -31,6 +56,43 @@ const displayMedia = (media, photographerName) => {
     source.src = `../../assets/photographers/medias/${surname}/${media.video}`;
     source.type = "video/mp4";
     videoNode.append(source);
-    lightbox.append(videoNode);
+    mediaContainer.append(videoNode);
   }
+};
+
+const showNextMedia = (mediaNavigation, photographerName) => {
+  const newMedia = mediaNavigation.nextMedia();
+  displayMedia(newMedia, photographerName);
+};
+
+const showPrevMedia = (mediaNavigation, photographerName) => {
+  const newMedia = mediaNavigation.prevMedia();
+  displayMedia(newMedia, photographerName);
+};
+
+const initLightbox = (media, medias, photographerName) => {
+  // Instance of navigation object
+  const lightboxMediaNavigationModel = new LightboxMediaNavigation(
+    media,
+    medias
+  );
+
+  //Display lightbox on screen
+  displayLightbox();
+
+  // Add media on lightbox
+  displayMedia(media, photographerName);
+
+  // Init next btn
+  nextMediaBtn.addEventListener("click", () =>
+    showNextMedia(lightboxMediaNavigationModel, photographerName)
+  );
+
+  // Init previous btn
+  prevMediaBtn.addEventListener("click", () =>
+    showPrevMedia(lightboxMediaNavigationModel, photographerName)
+  );
+
+  // Init close btn
+  closeBtn.addEventListener("click", () => closeLightbox());
 };

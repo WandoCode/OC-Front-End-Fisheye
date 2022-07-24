@@ -3,15 +3,16 @@
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8" />
+    <script
+      src="https://kit.fontawesome.com/6ca5c184a9.js"
+      crossorigin="anonymous"
+    ></script>
     <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
       rel="stylesheet"
     />
-    <script
-      src="https://kit.fontawesome.com/6ca5c184a9.js"
-      crossorigin="anonymous"
-    ></script>
+
     <title>Fisheye - photographe</title>
   </head>
   <body>
@@ -76,8 +77,9 @@
     </div>
     <div class="lightbox">
       <!--TODO: Changer l'icone (blc sur blc actuellement) -->
-      <i class="fa-solid fa-xmark-large" onclick="closeLightbox()"></i>
-
+      <i class="fa-solid fa-xmark close-lightbox"></i>
+      <i class="fa-solid fa-chevron-left prev-media"></i>
+      <i class="fa-solid fa-chevron-right next-media"></i>
       <div class="media-container"></div>
     </div>
     <script src="scripts/factories/photographer.js"></script>
