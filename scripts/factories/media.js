@@ -16,6 +16,7 @@ function mediaFactory(media, photographerName) {
       const img = document.createElement("img");
       img.src = `../../assets/photographers/medias/${surname}/${image}`;
       img.alt = title;
+
       return img;
     }
   }

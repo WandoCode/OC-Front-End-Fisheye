@@ -76,6 +76,11 @@ function displayMediaCards(photographer, medias) {
     const mediasModel = mediaFactory(media, photographer.name);
     mediaCard = mediasModel.getCardDOM();
     gallery.append(mediaCard);
+
+    //LightBox
+    mediaCard.addEventListener("click", () => {
+      handleLightbox(media, medias, photographer.name);
+    });
   });
 }
 
