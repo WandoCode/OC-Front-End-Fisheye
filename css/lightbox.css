@@ -1,9 +1,31 @@
 .lightbox {
-  display: "block";
+  display: none;
   position: fixed;
   top: 0;
   bottom: 0;
-  right: 0;
   left: 0;
+  right: 0;
   background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.lightbox .media-container {
+  height: 80%;
+  width: 90%;
+}
+.media-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.lightbox .fa-xmark-large {
+  color: red;
+  font-size: 25px;
+  height: 20px;
+  width: 20px;
+  border: 2px green solid;
+  z-index: 2;
 }

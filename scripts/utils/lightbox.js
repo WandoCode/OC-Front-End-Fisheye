@@ -6,6 +6,7 @@ const handleLightbox = (media, medias, photographerName) => {
 const closeLightbox = () => {
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";
+  //TODO: retirer l'image du container qd lightbox fermée
 };
 const openLightbox = () => {
   const lightbox = document.querySelector(".lightbox");
