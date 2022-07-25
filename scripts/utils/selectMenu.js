@@ -16,8 +16,10 @@ function selectMenu() {
       const isOpened = btnSelect.getAttribute("open");
       if (isOpened === "true") {
         btnSelect.setAttribute("open", "false");
+        btnSelect.setAttribute("aria-expanded", "false");
       } else if (isOpened === "false") {
         btnSelect.setAttribute("open", "true");
+        btnSelect.setAttribute("aria-expanded", "true");
       }
     });
 

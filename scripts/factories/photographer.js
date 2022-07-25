@@ -8,7 +8,7 @@ function photographerFactory(data, mediasData) {
   const localisationText = `${city}, ${country}`;
 
   function getLocalizationDOM() {
-    const localisation = document.createElement("p");
+    const localisation = document.createElement("h2");
     localisation.textContent = localisationText;
     localisation.classList.add("localization");
 
@@ -38,7 +38,7 @@ function photographerFactory(data, mediasData) {
   function getUserPictureDOM() {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-
+    img.alt = name;
     return img;
   }
 
@@ -97,7 +97,10 @@ function photographerFactory(data, mediasData) {
 
     const priceText = `${price}€ / jour`;
     priceContainer.textContent = priceText;
-
+    priceContainer.setAttribute(
+      "aria-description",
+      "Price per day for photographer"
+    );
     const notch = document.createElement("div");
     notch.classList.add("notch");
 
@@ -105,6 +108,10 @@ function photographerFactory(data, mediasData) {
 
     const nbrLikes = document.createElement("span");
     nbrLikes.textContent = `${totalLikes}`;
+    nbrLikes.setAttribute(
+      "aria-description",
+      "Total likes for the photographer"
+    );
 
     const icon = document.createElement("i");
     icon.classList.add("fa-heart");

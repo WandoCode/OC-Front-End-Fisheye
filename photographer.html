@@ -17,7 +17,7 @@
   </head>
   <body>
     <header>
-      <a href="/">
+      <a href="/" aria-label="Fisheye Home page">
         <img
           src="assets/images/logo.png"
           class="logo"
@@ -33,13 +33,18 @@
       </section>
       <div class="medias-section">
         <div class="select-container">
-          <label for="btn-select"> Trier par </label>
+          <label for="btn-select">Trier par</label>
           <div class="sort-menu">
             <!-- TODO: Ajouter aria -->
-            <button class="select" id="btn-select" open="false">
+            <button
+              class="select"
+              id="btn-select"
+              open="false"
+              aria-haspopup="listbox"
+            >
               Popularité
             </button>
-            <ul class="select-dropdown">
+            <ul class="select-dropdown" role="listbox" aria-activedescendant>
               <li class="option option-hide" value="popularity" tabindex="0">
                 Popularité
               </li>
@@ -59,7 +64,12 @@
             <br />
             <span id="photographer-name"></span>
           </h1>
-          <img src="assets/icons/close.svg" class="contact-close" />
+          <img
+            src="assets/icons/close.svg"
+            class="contact-close"
+            role="button"
+            aria-label="close"
+          />
         </header>
         <form>
           <div>
@@ -77,14 +87,29 @@
       </div>
     </div>
     <div class="lightbox" tabindex="0">
-      <i class="fa-solid fa-xmark close-lightbox"></i>
+      <i
+        class="fa-solid fa-xmark close-lightbox"
+        role="button"
+        aria-label="close"
+        tabindex="0"
+      ></i>
       <div class="lightbox-main">
-        <i class="fa-solid fa-chevron-left prev-media"></i>
+        <i
+          class="fa-solid fa-chevron-left prev-media"
+          role="button"
+          aria-label="previous"
+          tabindex="0"
+        ></i>
         <div class="lightbox-media">
           <div class="media-container"></div>
           <h2 class="media-name"></h2>
         </div>
-        <i class="fa-solid fa-chevron-right next-media"></i>
+        <i
+          class="fa-solid fa-chevron-right next-media"
+          role="button"
+          aria-label="next"
+          tabindex="0"
+        ></i>
       </div>
     </div>
     <script src="scripts/factories/photographer.js"></script>
@@ -97,3 +122,4 @@
 </html>
 <!-- TODO: faire une review des erreurs accessibilité avec l'extension WAVE;
 Idem avec headingMaps -->
+<!-- TODO: bien revoir l'aria. Certains aspects sont pas claire -->

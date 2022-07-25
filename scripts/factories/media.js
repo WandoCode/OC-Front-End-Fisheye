@@ -2,6 +2,7 @@ function mediaFactory(media, photographerName) {
   let { title, image, likes, video } = media;
 
   // Create the media node following media type
+  // TODO: refactor
   function getMediaDOM(showControls = false) {
     const surname = photographerName.split(" ")[0];
 
@@ -13,6 +14,8 @@ function mediaFactory(media, photographerName) {
       videoNode.append(source);
       videoNode.classList.add("media");
       videoNode.setAttribute("data-id", media.id);
+      videoNode.setAttribute("role", "button");
+      videoNode.setAttribute("aria-label", "Open lightbox");
       videoNode.setAttribute("tabindex", 0);
       if (showControls) videoNode.setAttribute("controls", true);
       return videoNode;
@@ -24,6 +27,8 @@ function mediaFactory(media, photographerName) {
       img.alt = title;
       img.classList.add("media");
       img.setAttribute("data-id", media.id);
+      img.setAttribute("role", "button");
+      img.setAttribute("aria-label", "Open lightbox");
       img.setAttribute("tabindex", 0);
       return img;
     }
@@ -66,12 +71,16 @@ function mediaFactory(media, photographerName) {
     iconEmpty.classList.add("fa-regular");
     iconEmpty.classList.add("fa-heart");
     iconEmpty.setAttribute("tabindex", 0);
+    iconEmpty.setAttribute("role", "button");
+    iconEmpty.setAttribute("aria-label", "likes");
 
     const iconFilled = document.createElement("i");
     iconFilled.classList.add("fa-solid");
     iconFilled.classList.add("fa-heart");
     iconFilled.style.display = "none";
     iconFilled.setAttribute("tabindex", 0);
+    iconFilled.setAttribute("role", "button");
+    iconFilled.setAttribute("aria-label", "likes");
 
     likeContainer.append(nbrLikes);
     likeContainer.append(iconsContainer);
