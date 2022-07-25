@@ -78,9 +78,14 @@
     </div>
     <div class="lightbox" tabindex="0">
       <i class="fa-solid fa-xmark close-lightbox"></i>
-      <i class="fa-solid fa-chevron-left prev-media"></i>
-      <i class="fa-solid fa-chevron-right next-media"></i>
-      <div class="media-container"></div>
+      <div class="lightbox-main">
+        <i class="fa-solid fa-chevron-left prev-media"></i>
+        <div class="lightbox-media">
+          <div class="media-container"></div>
+          <h2 class="media-name"></h2>
+        </div>
+        <i class="fa-solid fa-chevron-right next-media"></i>
+      </div>
     </div>
     <script src="scripts/factories/photographer.js"></script>
     <script src="scripts/factories/media.js"></script>

@@ -65,6 +65,9 @@ const displayMedia = (media, photographerName) => {
 
   const mediaModel = mediaFactory(media, photographerName);
   mediaContainer.append(mediaModel.getMediaDOM(true));
+
+  const mediaName = document.querySelector(".media-name");
+  mediaName.textContent = media.title;
 };
 
 /* Load next media on screen */
