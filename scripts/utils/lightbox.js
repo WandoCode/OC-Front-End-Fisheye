@@ -1,10 +1,3 @@
-/* DOM node */
-const closeBtn = document.querySelector(".close-lightbox");
-const nextMediaBtn = document.querySelector(".next-media");
-const prevMediaBtn = document.querySelector(".prev-media");
-const lightbox = document.querySelector(".lightbox");
-const mediaContainer = document.querySelector(".media-container");
-
 /* Launch lightbox */
 const handleLightbox = (media, medias, photographerName) => {
   // Instance of navigation object
@@ -20,13 +13,10 @@ const handleLightbox = (media, medias, photographerName) => {
   displayMedia(media, photographerName);
 
   // Initialize lightbox buttons
-  nextMediaBtn.addEventListener("click", () =>
-    showNextMedia(lightboxMediaNavigationModel, photographerName)
-  );
-  prevMediaBtn.addEventListener("click", () =>
-    showPrevMedia(lightboxMediaNavigationModel, photographerName)
-  );
-  closeBtn.addEventListener("click", () => closeLightbox());
+  initButtonsNavigation(lightboxMediaNavigationModel, photographerName);
+
+  // Initialize keyboard navigation
+  initKeyboardNavigation(lightboxMediaNavigationModel, photographerName);
 };
 
 /* Object constructor for navigation between medias */
@@ -55,21 +45,26 @@ function LightboxMediaNavigation(media, medias) {
 
 /* Close lightbox */
 const closeLightbox = () => {
+  const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";
 };
 
 /* Open lightbox */
 const displayLightbox = () => {
+  const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "block";
+  lightbox.focus();
 };
 
 /* Load the media on screen */
 const displayMedia = (media, photographerName) => {
+  const mediaContainer = document.querySelector(".media-container");
+
   // Remove precedent picture if present
   mediaContainer.innerHTML = "";
 
   const mediaModel = mediaFactory(media, photographerName);
-  mediaContainer.append(mediaModel.getMediaDOM());
+  mediaContainer.append(mediaModel.getMediaDOM(true));
 };
 
 /* Load next media on screen */
@@ -82,4 +77,32 @@ const showNextMedia = (mediaNavigation, photographerName) => {
 const showPrevMedia = (mediaNavigation, photographerName) => {
   const newMedia = mediaNavigation.prevMedia();
   displayMedia(newMedia, photographerName);
+};
+
+const initButtonsNavigation = (mediaNavigation, photographerName) => {
+  const nextMediaBtn = document.querySelector(".next-media");
+  nextMediaBtn.addEventListener("click", () =>
+    showNextMedia(mediaNavigation, photographerName)
+  );
+
+  const prevMediaBtn = document.querySelector(".prev-media");
+  prevMediaBtn.addEventListener("click", () =>
+    showPrevMedia(mediaNavigation, photographerName)
+  );
+
+  const closeBtn = document.querySelector(".close-lightbox");
+  closeBtn.addEventListener("click", () => closeLightbox());
+};
+
+const initKeyboardNavigation = (mediaNavigation, photographerName) => {
+  const lightbox = document.querySelector(".lightbox");
+  lightbox.addEventListener("keydown", (e) => {
+    const keyValue = e.key;
+
+    if (keyValue === "ArrowRight")
+      showNextMedia(mediaNavigation, photographerName);
+    if (keyValue === "ArrowLeft")
+      showPrevMedia(mediaNavigation, photographerName);
+    if (keyValue === "Escape") closeLightbox();
+  });
 };

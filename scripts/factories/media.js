@@ -2,8 +2,9 @@ function mediaFactory(media, photographerName) {
   let { title, image, likes, video } = media;
 
   // Create the media node following media type
-  function getMediaDOM() {
+  function getMediaDOM(showControls = false) {
     const surname = photographerName.split(" ")[0];
+
     if (media.video) {
       const videoNode = document.createElement("video");
       const source = document.createElement("source");
@@ -12,9 +13,10 @@ function mediaFactory(media, photographerName) {
       videoNode.append(source);
       videoNode.classList.add("media");
       videoNode.setAttribute("data-id", media.id);
-
+      if (showControls) videoNode.setAttribute("controls", true);
       return videoNode;
     }
+
     if (media.image) {
       const img = document.createElement("img");
       img.src = `../../assets/photographers/medias/${surname}/${image}`;

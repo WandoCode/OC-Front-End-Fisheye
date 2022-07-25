@@ -82,7 +82,7 @@ function displayMediaCards(photographer, medias) {
   });
 }
 
-/* Listen to open dedicated lightbox on click */
+/* Listen to medias to open dedicated lightbox on click */
 const initLightboxes = (medias, photographerName) => {
   const mediaNodes = document.querySelectorAll(".media");
 
