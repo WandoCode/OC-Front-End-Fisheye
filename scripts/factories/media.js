@@ -56,27 +56,37 @@ function mediaFactory(media, photographerName) {
   // Create the like button for card
   function createLikeDOM() {
     const likeContainer = document.createElement("div");
-
     const nbrLikes = document.createElement("span");
     nbrLikes.textContent = `${likes}`;
     nbrLikes.ariaLabel = "likes";
+
     const iconsContainer = document.createElement("div");
 
     const iconEmpty = document.createElement("i");
     iconEmpty.classList.add("fa-regular");
     iconEmpty.classList.add("fa-heart");
+    iconEmpty.setAttribute("tabindex", 0);
 
     const iconFilled = document.createElement("i");
     iconFilled.classList.add("fa-solid");
     iconFilled.classList.add("fa-heart");
     iconFilled.style.display = "none";
+    iconFilled.setAttribute("tabindex", 0);
 
     likeContainer.append(nbrLikes);
     likeContainer.append(iconsContainer);
 
     iconsContainer.append(iconEmpty);
     iconsContainer.append(iconFilled);
-    iconsContainer.onclick = toggleLike;
+    iconsContainer.addEventListener("click", toggleLike);
+
+    // Keyboard navigation
+    iconFilled.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") toggleLike(e);
+    });
+    iconEmpty.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") toggleLike(e);
+    });
 
     return likeContainer;
   }
