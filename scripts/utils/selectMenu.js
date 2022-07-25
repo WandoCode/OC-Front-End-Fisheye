@@ -24,18 +24,10 @@ function selectMenu() {
     // Handle options selection
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
-        const value = e.target.getAttribute("value");
-
-        // Change the value in btn by the clicked value
-        btnSelect.textContent = textValue[value];
-
-        const hideOption = document.querySelector(".option-hide");
-        hideOption.classList.remove("option-hide");
-
-        option.classList.add("option-hide");
-
-        // Close menu
-        btnSelect.setAttribute("open", "false");
+        changeSort(e, option);
+      });
+      option.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") changeSort(e, option);
       });
     });
   }
@@ -47,8 +39,29 @@ function selectMenu() {
         const newValue = e.target.getAttribute("value");
         cbFct(newValue);
       });
+      option.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          const newValue = e.target.getAttribute("value");
+          cbFct(newValue);
+        }
+      });
     });
   };
+
+  function changeSort(e, option) {
+    const value = e.target.getAttribute("value");
+
+    // Change the value in btn by the clicked value
+    btnSelect.textContent = textValue[value];
+
+    const hideOption = document.querySelector(".option-hide");
+    hideOption.classList.remove("option-hide");
+
+    option.classList.add("option-hide");
+
+    // Close menu
+    btnSelect.setAttribute("open", "false");
+  }
 
   return { initMenu, monitorSortingValue };
 }
