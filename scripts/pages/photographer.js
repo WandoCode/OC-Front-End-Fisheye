@@ -95,6 +95,11 @@ const initLightboxes = (medias, photographerName) => {
     media.addEventListener("click", () =>
       handleLightbox(mediaDatas, medias, photographerName)
     );
+
+    media.addEventListener("keydown", (e) => {
+      if (e.key === "Enter")
+        handleLightbox(mediaDatas, medias, photographerName);
+    });
   });
 };
 

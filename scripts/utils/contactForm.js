@@ -9,12 +9,23 @@ const initModal = (name) => {
   //Handle modal subission
   const btnSubmit = document.querySelector("#form-submit");
   btnSubmit.addEventListener("click", handleModalSubmission);
+
+  // Handle modal closing
+  const btnClose = document.querySelector(".contact-close");
+  btnClose.addEventListener("click", closeModal);
+
+  // Handle modal keyboard navigation
+  const modal = document.getElementById("contact_modal");
+  modal.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
 };
 
 /* Show modal on screen */
 function displayModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "flex";
+  modal.focus();
 }
 
 function closeModal() {
@@ -40,4 +51,5 @@ const handleModalSubmission = (e) => {
   };
 
   console.log(formValues);
+  closeModal();
 };

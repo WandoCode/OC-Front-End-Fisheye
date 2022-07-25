@@ -13,6 +13,7 @@ function mediaFactory(media, photographerName) {
       videoNode.append(source);
       videoNode.classList.add("media");
       videoNode.setAttribute("data-id", media.id);
+      videoNode.setAttribute("tabindex", 0);
       if (showControls) videoNode.setAttribute("controls", true);
       return videoNode;
     }
@@ -23,6 +24,7 @@ function mediaFactory(media, photographerName) {
       img.alt = title;
       img.classList.add("media");
       img.setAttribute("data-id", media.id);
+      img.setAttribute("tabindex", 0);
       return img;
     }
   }
