@@ -42,7 +42,7 @@ const getPhotographerId = () => {
 
 /* Retrieve datas from DB */
 async function getPhotographerDatas(photographerId) {
-  const reponse = await fetch("/data/photographers.json");
+  const reponse = await fetch("data/photographers.json");
   const datas = await reponse.json();
 
   // Get the given photographer entry in DB

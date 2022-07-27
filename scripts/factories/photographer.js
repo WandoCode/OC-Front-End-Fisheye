@@ -1,7 +1,7 @@
 function photographerFactory(data, mediasData) {
   const { name, portrait, id, tagline, price, city, country } = data;
 
-  const picture = `/assets/photographers/portraits/${portrait}`;
+  const picture = `assets/photographers/portraits/${portrait}`;
 
   const profilURL = `./photographer.html?id=${id}`;
 

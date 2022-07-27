@@ -1,7 +1,7 @@
 async function getPhotographers() {
   try {
     // Fetch photographers datas from DB
-    const reponse = await fetch("/data/photographers.json");
+    const reponse = await fetch("data/photographers.json");
     const datas = await reponse.json();
     const photographers = datas.photographers;
 

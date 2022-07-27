@@ -9,7 +9,7 @@ function mediaFactory(media, photographerName) {
     if (media.video) {
       const videoNode = document.createElement("video");
       const source = document.createElement("source");
-      source.src = `../../assets/photographers/medias/${surname}/${video}`;
+      source.src = `assets/photographers/medias/${surname}/${video}`;
       source.type = "video/mp4";
       videoNode.append(source);
       videoNode.classList.add("media");
@@ -23,7 +23,7 @@ function mediaFactory(media, photographerName) {
 
     if (media.image) {
       const img = document.createElement("img");
-      img.src = `../../assets/photographers/medias/${surname}/${image}`;
+      img.src = `assets/photographers/medias/${surname}/${image}`;
       img.alt = title;
       img.classList.add("media");
       img.setAttribute("data-id", media.id);
