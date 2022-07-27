@@ -154,5 +154,3 @@ function rerenderMedias(value, photographerDatas) {
 }
 
 init();
-
-// TODO: Attention: ajouter un like ouvre la lightbox
