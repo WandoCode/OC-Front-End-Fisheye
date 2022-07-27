@@ -1,0 +1,22 @@
+{
+  "name": "oc-front-end-fisheye",
+  "version": "1.0.0",
+  "description": "Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WandoCode/OC-Front-End-Fisheye.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WandoCode/OC-Front-End-Fisheye/issues"
+  },
+  "homepage": "https://github.com/WandoCode/OC-Front-End-Fisheye#readme",
+  "devDependencies": {
+    "eslint": "^8.20.0"
+  }
+}

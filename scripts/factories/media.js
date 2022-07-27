@@ -30,6 +30,7 @@ function mediaFactory(media, photographerName) {
       img.setAttribute("tabindex", 0);
       if (!isInLightbox) img.setAttribute("role", "button");
       if (!isInLightbox) img.setAttribute("aria-label", "Open lightbox");
+
       return img;
     }
   }
