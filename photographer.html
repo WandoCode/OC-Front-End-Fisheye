@@ -25,7 +25,7 @@
         />
       </a>
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="false">
       <section class="photograph-header">
         <button class="contact_button" onclick="displayModal()">
           Contactez-moi
@@ -56,7 +56,16 @@
         <div class="gallery"></div>
       </div>
     </main>
-    <div id="contact_modal" tabindex="0">
+    <div
+      id="contact_modal"
+      aria-hidden="true"
+      aria-describedby="contact-details"
+      role="dialog"
+      tabindex="0"
+    >
+      <div class="screen-reader-text" id="contact-details">
+        Formulaire pour contacter le photographe
+      </div>
       <div class="modal">
         <header>
           <h1>
@@ -69,6 +78,7 @@
             class="contact-close"
             role="button"
             aria-label="close"
+            tabindex="0"
           />
         </header>
         <form>
@@ -86,7 +96,16 @@
         </form>
       </div>
     </div>
-    <div class="lightbox" tabindex="0">
+    <div
+      class="lightbox"
+      aria-hidden="true"
+      role="dialog"
+      tabindex="0"
+      aria-describedby="lightbox-details"
+    >
+      <div class="screen-reader-text" id="lightbox-details">
+        Lightbox permettant de visualiser l'image ou la vidéo en détails
+      </div>
       <i
         class="fa-solid fa-xmark close-lightbox"
         role="button"

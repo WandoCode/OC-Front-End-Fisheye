@@ -45,14 +45,22 @@ function LightboxMediaNavigation(media, medias) {
 
 /* Close lightbox */
 const closeLightbox = () => {
+  const main = document.getElementById("main");
+  main.setAttribute("aria-hidden", false);
+
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "none";
+  lightbox.setAttribute("aria-hidden", true);
 };
 
 /* Open lightbox */
 const displayLightbox = () => {
+  const main = document.getElementById("main");
+  main.setAttribute("aria-hidden", true);
+
   const lightbox = document.querySelector(".lightbox");
   lightbox.style.display = "block";
+  lightbox.setAttribute("aria-hidden", false);
   lightbox.focus();
 };
 

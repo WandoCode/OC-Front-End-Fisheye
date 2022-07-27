@@ -94,3 +94,10 @@ h1 {
   font-size: 11px;
   color: #525252;
 }
+
+.screen-reader-text {
+  position: absolute;
+  top: -10000px;
+  left: -10000px;
+  font-size: 0;
+}

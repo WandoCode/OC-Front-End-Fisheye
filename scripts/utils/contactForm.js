@@ -23,13 +23,21 @@ const initModal = (name) => {
 
 /* Show modal on screen */
 function displayModal() {
+  const main = document.getElementById("main");
+  main.setAttribute("aria-hidden", true);
+
   const modal = document.getElementById("contact_modal");
   modal.style.display = "flex";
+  modal.setAttribute("aria-hidden", false);
   modal.focus();
 }
 
 function closeModal() {
+  const main = document.getElementById("main");
+  main.setAttribute("aria-hidden", false);
+
   const modal = document.getElementById("contact_modal");
+  modal.setAttribute("aria-hidden", true);
   modal.style.display = "none";
 }
 
