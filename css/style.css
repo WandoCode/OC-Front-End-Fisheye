@@ -101,3 +101,7 @@ h1 {
   left: -10000px;
   font-size: 0;
 }
+
+.no-scroll {
+  overflow: hidden;
+}

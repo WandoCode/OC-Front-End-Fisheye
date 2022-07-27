@@ -45,6 +45,9 @@ function LightboxMediaNavigation(media, medias) {
 
 /* Close lightbox */
 const closeLightbox = () => {
+  const body = document.querySelector("body");
+  body.classList.remove("no-scroll");
+
   const main = document.getElementById("main");
   main.setAttribute("aria-hidden", false);
 
@@ -55,6 +58,9 @@ const closeLightbox = () => {
 
 /* Open lightbox */
 const displayLightbox = () => {
+  const body = document.querySelector("body");
+  body.classList.add("no-scroll");
+
   const main = document.getElementById("main");
   main.setAttribute("aria-hidden", true);
 

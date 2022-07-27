@@ -3,7 +3,7 @@ function mediaFactory(media, photographerName) {
 
   // Create the media node following media type
   // TODO: refactor
-  function getMediaDOM(showControls = false) {
+  function getMediaDOM(isInLightbox = false) {
     const surname = photographerName.split(" ")[0];
 
     if (media.video) {
@@ -14,10 +14,10 @@ function mediaFactory(media, photographerName) {
       videoNode.append(source);
       videoNode.classList.add("media");
       videoNode.setAttribute("data-id", media.id);
-      videoNode.setAttribute("role", "button");
-      videoNode.setAttribute("aria-label", "Open lightbox");
       videoNode.setAttribute("tabindex", 0);
-      if (showControls) videoNode.setAttribute("controls", true);
+      if (!isInLightbox) videoNode.setAttribute("role", "button");
+      if (!isInLightbox) videoNode.setAttribute("aria-label", "Open lightbox");
+      if (isInLightbox) videoNode.setAttribute("controls", true);
       return videoNode;
     }
 
@@ -27,9 +27,9 @@ function mediaFactory(media, photographerName) {
       img.alt = title;
       img.classList.add("media");
       img.setAttribute("data-id", media.id);
-      img.setAttribute("role", "button");
-      img.setAttribute("aria-label", "Open lightbox");
       img.setAttribute("tabindex", 0);
+      if (!isInLightbox) img.setAttribute("role", "button");
+      if (!isInLightbox) img.setAttribute("aria-label", "Open lightbox");
       return img;
     }
   }

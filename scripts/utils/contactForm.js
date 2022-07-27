@@ -23,6 +23,9 @@ const initModal = (name) => {
 
 /* Show modal on screen */
 function displayModal() {
+  const body = document.querySelector("body");
+  body.classList.add("no-scroll");
+
   const main = document.getElementById("main");
   main.setAttribute("aria-hidden", true);
 
@@ -33,6 +36,9 @@ function displayModal() {
 }
 
 function closeModal() {
+  const body = document.querySelector("body");
+  body.classList.remove("no-scroll");
+
   const main = document.getElementById("main");
   main.setAttribute("aria-hidden", false);
 
