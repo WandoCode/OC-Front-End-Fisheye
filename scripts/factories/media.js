@@ -16,7 +16,8 @@ function mediaFactory(media, photographerName) {
       videoNode.setAttribute("data-id", media.id);
       videoNode.setAttribute("tabindex", 0);
       if (!isInLightbox) videoNode.setAttribute("role", "button");
-      if (!isInLightbox) videoNode.setAttribute("aria-label", "Open lightbox");
+      if (!isInLightbox)
+        videoNode.setAttribute("aria-label", `Vue détaillée de ${title}`);
       if (isInLightbox) videoNode.setAttribute("controls", true);
       return videoNode;
     }

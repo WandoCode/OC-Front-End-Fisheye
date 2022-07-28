@@ -122,4 +122,20 @@ const initKeyboardNavigation = (mediaNavigation, photographerName) => {
       showPrevMedia(mediaNavigation, photographerName);
     if (keyValue === "Escape") closeLightbox();
   });
+
+  const closeBtn = document.getElementById("close-lightbox");
+  closeBtn.addEventListener("keydown", (e) => {
+    const keyValue = e.key;
+    if (keyValue === "Enter") closeLightbox();
+  });
+  const prevBtn = document.getElementById("prev-lightbox");
+  prevBtn.addEventListener("keydown", (e) => {
+    const keyValue = e.key;
+    if (keyValue === "Enter") showNextMedia(mediaNavigation, photographerName);
+  });
+  const nextBtn = document.getElementById("next-lightbox");
+  nextBtn.addEventListener("keydown", (e) => {
+    const keyValue = e.key;
+    if (keyValue === "Enter") showPrevMedia(mediaNavigation, photographerName);
+  });
 };
