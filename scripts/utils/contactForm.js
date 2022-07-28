@@ -35,6 +35,7 @@ function displayModal() {
   modal.focus();
 }
 
+/* Remove modal from screen */
 function closeModal() {
   const body = document.querySelector("body");
   body.classList.remove("no-scroll");
@@ -47,6 +48,7 @@ function closeModal() {
   modal.style.display = "none";
 }
 
+/* Fill photographer name */
 const fillPhotographerName = (name) => {
   const nameNode = document.querySelector("#photographer-name");
   nameNode.textContent = name;
@@ -80,11 +82,13 @@ const handleModalSubmission = (e) => {
     return validationResult !== undefined;
   });
 
-  // Form is valid: submit
+  // Form is valid: continue
   if (errors.length == 0) {
     console.log(formValues);
     closeModal();
-  } else {
+  }
+  // Form is invalid: show error
+  else {
     console.error(`Invali field(s): ${errors}`);
   }
 };
@@ -93,6 +97,7 @@ const handleModalSubmission = (e) => {
 function validateNames(value, inputName) {
   if (value.length < 2 || isEmpty(value)) return inputName;
 }
+
 /* Textarea  validation */
 function validateText(value, inputName) {
   if (value.length < 10 || isEmpty(value)) return inputName;

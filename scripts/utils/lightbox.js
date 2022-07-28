@@ -77,9 +77,11 @@ const displayMedia = (media, photographerName) => {
   // Remove precedent picture if present
   mediaContainer.innerHTML = "";
 
+  // Get node from factory
   const mediaModel = mediaFactory(media, photographerName);
   mediaContainer.append(mediaModel.getMediaDOM(true));
 
+  // Add media name
   const mediaName = document.querySelector(".media-name");
   mediaName.textContent = media.title;
 };
@@ -96,6 +98,7 @@ const showPrevMedia = (mediaNavigation, photographerName) => {
   displayMedia(newMedia, photographerName);
 };
 
+/* Initialize mouse navigation events */
 const initButtonsNavigation = (mediaNavigation, photographerName) => {
   const nextMediaBtn = document.querySelector(".next-media");
   nextMediaBtn.addEventListener("click", () =>
@@ -111,6 +114,7 @@ const initButtonsNavigation = (mediaNavigation, photographerName) => {
   closeBtn.addEventListener("click", () => closeLightbox());
 };
 
+/* Initialize keyboard navigation events */
 const initKeyboardNavigation = (mediaNavigation, photographerName) => {
   const lightbox = document.querySelector(".lightbox");
   lightbox.addEventListener("keydown", (e) => {
@@ -118,8 +122,10 @@ const initKeyboardNavigation = (mediaNavigation, photographerName) => {
 
     if (keyValue === "ArrowRight")
       showNextMedia(mediaNavigation, photographerName);
+
     if (keyValue === "ArrowLeft")
       showPrevMedia(mediaNavigation, photographerName);
+
     if (keyValue === "Escape") closeLightbox();
   });
 
