@@ -31,9 +31,9 @@
           Contactez-moi
         </button>
       </section>
-      <div class="medias-section">
+      <section class="medias-section">
         <div class="select-container">
-          <label for="btn-select">Trier par</label>
+          <label for="btn-select" id="label-select">Trier par</label>
           <div class="sort-menu">
             <!-- TODO: Ajouter aria -->
             <button
@@ -41,20 +41,47 @@
               id="btn-select"
               open="false"
               aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-activedescendant="opt1"
             >
               Popularité
             </button>
-            <ul class="select-dropdown" role="listbox" aria-activedescendant>
-              <li class="option option-hide" value="popularity" tabindex="0">
+            <ul
+              class="select-dropdown"
+              role="listbox"
+              aria-labelledby="label-select"
+            >
+              <li
+                role="option"
+                class="option option-hide"
+                value="popularity"
+                id="opt1"
+              >
                 Popularité
               </li>
-              <li class="option" value="date" tabindex="0">Date</li>
-              <li class="option" value="title" tabindex="0">Titre</li>
+              <li
+                role="option"
+                class="option"
+                value="date"
+                tabindex="0"
+                id="opt2"
+              >
+                Date
+              </li>
+              <li
+                role="option"
+                class="option"
+                value="title"
+                tabindex="0"
+                id="opt3"
+              >
+                Titre
+              </li>
             </ul>
           </div>
         </div>
         <div class="gallery"></div>
-      </div>
+      </section>
     </main>
     <div
       id="contact_modal"
@@ -140,6 +167,3 @@
     <script src="scripts/pages/photographer.js"></script>
   </body>
 </html>
-<!-- TODO: faire une review des erreurs accessibilité avec l'extension WAVE;
-Idem avec headingMaps -->
-<!-- TODO: bien revoir l'aria. Certains aspects sont pas claire -->

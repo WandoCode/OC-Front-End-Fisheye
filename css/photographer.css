@@ -71,6 +71,7 @@
   object-fit: cover;
   image-rendering: pixelated;
   border-radius: 7px;
+  cursor: pointer;
 }
 
 .gallery article > div {

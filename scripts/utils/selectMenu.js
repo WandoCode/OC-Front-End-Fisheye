@@ -31,6 +31,9 @@ function selectMenu() {
       option.addEventListener("keydown", (e) => {
         if (e.key === "Enter") changeSort(e, option);
       });
+      option.addEventListener("focus", (e) => {
+        btnSelect.setAttribute("aria-activedescendant", option.id);
+      });
     });
   }
 
@@ -58,11 +61,14 @@ function selectMenu() {
 
     const hideOption = document.querySelector(".option-hide");
     hideOption.classList.remove("option-hide");
+    hideOption.setAttribute("tabindex", "0");
 
     option.classList.add("option-hide");
+    option.removeAttribute("tabindex");
 
     // Close menu
     btnSelect.setAttribute("open", "false");
+    btnSelect.setAttribute("aria-activedescendant", option.id);
   }
 
   return { initMenu, monitorSortingValue };
