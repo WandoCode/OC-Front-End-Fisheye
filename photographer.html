@@ -35,7 +35,6 @@
         <div class="select-container">
           <label for="btn-select" id="label-select">Trier par</label>
           <div class="sort-menu">
-            <!-- TODO: Ajouter aria -->
             <button
               class="select"
               id="btn-select"
@@ -86,16 +85,13 @@
     <div
       id="contact_modal"
       aria-hidden="true"
-      aria-describedby="contact-details"
+      aria-labelledby="form-description"
       role="dialog"
       tabindex="0"
     >
-      <div class="screen-reader-text" id="contact-details">
-        Formulaire pour contacter le photographe
-      </div>
       <div class="modal">
         <header>
-          <h1>
+          <h1 id="form-description">
             Contactez-moi
             <br />
             <span id="photographer-name"></span>
@@ -104,9 +100,9 @@
             src="assets/icons/close.svg"
             class="contact-close"
             role="button"
-            aria-label="Ferme la modale"
+            aria-label="Ferme le formulaire de contact"
             tabindex="0"
-            alt="Fermer"
+            alt=""
           />
         </header>
         <form>
@@ -129,11 +125,8 @@
       aria-hidden="true"
       role="dialog"
       tabindex="0"
-      aria-describedby="Vue détaillée de l'image"
+      aria-label="Vue détaillée de l'image"
     >
-      <div class="screen-reader-text" id="lightbox-details">
-        Lightbox permettant de visualiser l'image ou la vidéo en détails
-      </div>
       <i
         class="fa-solid fa-xmark close-lightbox"
         role="button"
