@@ -64,6 +64,54 @@ const handleModalSubmission = (e) => {
     message: contactForm.message.value,
   };
 
-  console.log(formValues);
-  closeModal();
+  // Process validation
+  const validators = [
+    validateNames(contactForm.name.value, contactForm.name.name),
+    validateNames(
+      contactForm["family-name"].value,
+      contactForm["family-name"].name
+    ),
+    validateEmail(contactForm.email.value, contactForm.email.name),
+    validateText(contactForm.message.value, contactForm.message.name),
+  ];
+
+  // Gets errors from validation
+  const errors = validators.filter((validationResult) => {
+    return validationResult !== undefined;
+  });
+
+  // Form is valid: submit
+  if (errors.length == 0) {
+    console.log(formValues);
+    closeModal();
+  } else {
+    console.error(`Invali field(s): ${errors}`);
+  }
 };
+
+/* Text input validation */
+function validateNames(value, inputName) {
+  if (value.length < 2 || isEmpty(value)) return inputName;
+}
+/* Textarea  validation */
+function validateText(value, inputName) {
+  if (value.length < 10 || isEmpty(value)) return inputName;
+}
+
+//  Validate form email input
+function validateEmail(value, inputName) {
+  //  Regular expression for an email adress
+  const reEmail =
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+  if (!reEmail.test(value) || isEmpty(value)) return inputName;
+}
+
+// Check that the given string is empty
+function isEmpty(valueStr) {
+  if (valueStr === "") return true;
+  if (valueStr === undefined) return true;
+  if (valueStr.length === 0) return true;
+
+  return false;
+}

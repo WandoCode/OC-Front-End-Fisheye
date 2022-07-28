@@ -105,16 +105,27 @@
             alt=""
           />
         </header>
-        <form>
+        <form novalidate>
           <div>
             <label for="name">Prénom</label>
-            <input type="text" name="name" id="name" />
+            <input type="text" name="name" id="name" required minlength="2" />
             <label for="family-name">Nom</label>
-            <input type="text" name="family-name" id="family-name" />
+            <input
+              type="text"
+              name="family-name"
+              id="family-name"
+              required
+              minlength="2"
+            />
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" />
+            <input type="email" name="email" id="email" required />
             <label for="message">Votre message</label>
-            <textarea name="message" id="message"></textarea>
+            <textarea
+              name="message"
+              id="message"
+              required
+              minlength="10"
+            ></textarea>
           </div>
           <button class="contact_button" id="form-submit">Envoyer</button>
         </form>
