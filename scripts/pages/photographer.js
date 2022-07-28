@@ -5,7 +5,7 @@ async function init() {
   // Get photographer datas from DB
   const photographerDatas = await getPhotographerDatas(photographerID);
 
-  // Initial sorting of medias
+  // Initial sorting for medias
   sortMedias("popularity", photographerDatas.medias);
 
   const photographerModel = photographerFactory(
@@ -31,8 +31,8 @@ async function init() {
 /* Get photgrapher id */
 const getPhotographerId = () => {
   const urlParams = new URL(document.location).searchParams;
-
   const userId = urlParams.get("id");
+
   if (userId) {
     return userId;
   } else {
@@ -127,6 +127,7 @@ function sortMedias(value, medias) {
       }),
   };
 
+  // Execute sorting
   sorting[value]();
 }
 

@@ -2,9 +2,7 @@ function photographerFactory(data, mediasData) {
   const { name, portrait, id, tagline, price, city, country } = data;
 
   const picture = `assets/photographers/portraits/${portrait}`;
-
   const profilURL = `./photographer.html?id=${id}`;
-
   const localisationText = `${city}, ${country}`;
 
   function getLocalizationDOM() {
@@ -66,11 +64,9 @@ function photographerFactory(data, mediasData) {
 
     article.appendChild(anchor);
 
-    // Linking elements
     anchor.appendChild(img);
     anchor.appendChild(h2);
 
-    // Text elements
     article.appendChild(localisation);
     article.appendChild(taglineElement);
     article.appendChild(priceElement);

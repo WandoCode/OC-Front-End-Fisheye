@@ -2,7 +2,6 @@ function mediaFactory(media, photographerName) {
   let { title, image, likes, video } = media;
 
   // Create the media node following media type
-  // TODO: refactor
   function getMediaDOM(isInLightbox = false) {
     const surname = photographerName.split(" ")[0];
 
