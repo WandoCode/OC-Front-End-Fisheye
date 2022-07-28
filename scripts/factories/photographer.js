@@ -85,7 +85,7 @@ function photographerFactory(data, mediasData) {
     return total;
   }
 
-  // Display total nbr of likes and price for the photographer
+  // Create a node containing the total nbr of likes and price for the photographer
   function getNotchDOM() {
     const totalLikes = getTotalLikes();
 
@@ -97,6 +97,7 @@ function photographerFactory(data, mediasData) {
       "aria-description",
       "Price per day for photographer"
     );
+
     const notch = document.createElement("div");
     notch.classList.add("notch");
 
