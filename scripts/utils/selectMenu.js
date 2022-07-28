@@ -13,17 +13,27 @@ function selectMenu() {
   function initMenu() {
     // Handle open/close of menu
     btnSelect.addEventListener("click", (e) => {
-      const isOpened = btnSelect.getAttribute("open");
-      if (isOpened === "true") {
-        btnSelect.setAttribute("open", "false");
-        btnSelect.setAttribute("aria-expanded", "false");
-      } else if (isOpened === "false") {
-        btnSelect.setAttribute("open", "true");
-        btnSelect.setAttribute("aria-expanded", "true");
-      }
+      toggleMenuOpening();
     });
 
     // Handle options selection
+    handleOptions();
+  }
+
+  // Toggle menu opening
+  function toggleMenuOpening() {
+    const isOpened = btnSelect.getAttribute("open");
+    if (isOpened === "true") {
+      btnSelect.setAttribute("open", "false");
+      btnSelect.setAttribute("aria-expanded", "false");
+    } else if (isOpened === "false") {
+      btnSelect.setAttribute("open", "true");
+      btnSelect.setAttribute("aria-expanded", "true");
+    }
+  }
+
+  // Handle options selection
+  function handleOptions() {
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
         changeSort(e, option);
@@ -53,12 +63,14 @@ function selectMenu() {
     });
   };
 
+  /* Change HTML/CSS attribute to follow the chosen sorting */
   function changeSort(e, option) {
     const value = e.target.getAttribute("value");
 
     // Change the value in btn by the clicked value
     btnSelect.textContent = textValue[value];
 
+    // Hide current sort from options
     const hideOption = document.querySelector(".option-hide");
     hideOption.classList.remove("option-hide");
     hideOption.setAttribute("tabindex", "0");
@@ -69,6 +81,7 @@ function selectMenu() {
     // Close menu
     btnSelect.setAttribute("open", "false");
     btnSelect.setAttribute("aria-activedescendant", option.id);
+    btnSelect.focus();
   }
 
   return { initMenu, monitorSortingValue };
