@@ -11,13 +11,11 @@ function mediaFactory(media, photographerName) {
       source.src = `assets/photographers/medias/${surname}/${video}`;
       source.type = "video/mp4";
       videoNode.append(source);
-      videoNode.classList.add("media");
-      videoNode.setAttribute("data-id", media.id);
-      videoNode.setAttribute("tabindex", 0);
-      if (!isInLightbox) videoNode.setAttribute("role", "button");
-      if (!isInLightbox)
-        videoNode.setAttribute("aria-label", `Vue détaillée de ${title}`);
+
+      fillGeneralMediaPropriety(videoNode, isInLightbox);
+
       if (isInLightbox) videoNode.setAttribute("controls", true);
+
       return videoNode;
     }
 
@@ -25,15 +23,22 @@ function mediaFactory(media, photographerName) {
       const img = document.createElement("img");
       img.src = `assets/photographers/medias/${surname}/${image}`;
       img.alt = title;
-      img.classList.add("media");
-      img.setAttribute("data-id", media.id);
-      img.setAttribute("tabindex", 0);
-      if (!isInLightbox) img.setAttribute("role", "button");
-      if (!isInLightbox) img.setAttribute("aria-label", "Open lightbox");
+
+      fillGeneralMediaPropriety(img, isInLightbox);
 
       return img;
     }
   }
+
+  /* Fill shared proprieties between image and video */
+  const fillGeneralMediaPropriety = (node, isInLightbox) => {
+    node.classList.add("media");
+    node.setAttribute("data-id", media.id);
+    node.setAttribute("tabindex", 0);
+    if (!isInLightbox) node.setAttribute("role", "button");
+    if (!isInLightbox)
+      node.setAttribute("aria-label", `Vue détaillée de ${title}`);
+  };
 
   // Create a card for a media
   function getCardDOM() {
@@ -71,17 +76,13 @@ function mediaFactory(media, photographerName) {
     const iconEmpty = document.createElement("i");
     iconEmpty.classList.add("fa-regular");
     iconEmpty.classList.add("fa-heart");
-    iconEmpty.setAttribute("tabindex", 0);
-    iconEmpty.setAttribute("role", "button");
-    iconEmpty.setAttribute("aria-label", "likes");
+    fillLikePropriety(iconEmpty);
 
     const iconFilled = document.createElement("i");
     iconFilled.classList.add("fa-solid");
     iconFilled.classList.add("fa-heart");
     iconFilled.style.display = "none";
-    iconFilled.setAttribute("tabindex", 0);
-    iconFilled.setAttribute("role", "button");
-    iconFilled.setAttribute("aria-label", "likes");
+    fillLikePropriety(iconFilled);
 
     likeContainer.append(nbrLikes);
     likeContainer.append(iconsContainer);
@@ -101,7 +102,14 @@ function mediaFactory(media, photographerName) {
     return likeContainer;
   }
 
-  // Toogle like icon and nbr of likes
+  /* Fill shared proprieties between like btns */
+  const fillLikePropriety = (node) => {
+    node.setAttribute("tabindex", 0);
+    node.setAttribute("role", "button");
+    node.setAttribute("aria-label", "likes");
+  };
+
+  /* Toogle like icon and nbr of likes */
   function toggleLike(e) {
     const icon = e.target;
     const iconsArray = icon.parentNode.childNodes;
@@ -124,6 +132,7 @@ function mediaFactory(media, photographerName) {
         icon.style.display = "none";
       }
     });
+
     nbrLikes.textContent = likes;
   }
 
