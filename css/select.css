@@ -83,6 +83,6 @@
 
 .option-hide {
   position: absolute;
-  top: 10000px;
-  left: 10000px;
+  opacity: 0;
+  font-size: 1px;
 }
