@@ -43,7 +43,7 @@
   top: 35%;
 }
 
-.select[open="true"]:after {
+.select[data-open="true"]:after {
   transform: rotateX(180deg) rotate(135deg);
   top: 50%;
 }
@@ -72,12 +72,12 @@
   font-weight: 700;
 }
 
-.select[open="true"] {
+.select[data-open="true"] {
   border-radius: 5px 5px 0 0;
   padding-bottom: 14px;
 }
 
-.select[open="true"] + .select-dropdown {
+.select[data-open="true"] + .select-dropdown {
   display: inline;
 }
 

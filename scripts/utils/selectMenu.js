@@ -22,12 +22,12 @@ function selectMenu() {
 
   // Toggle menu opening
   function toggleMenuOpening() {
-    const isOpened = btnSelect.getAttribute("open");
+    const isOpened = btnSelect.getAttribute("data-open");
     if (isOpened === "true") {
-      btnSelect.setAttribute("open", "false");
+      btnSelect.setAttribute("data-open", "false");
       btnSelect.setAttribute("aria-expanded", "false");
     } else if (isOpened === "false") {
-      btnSelect.setAttribute("open", "true");
+      btnSelect.setAttribute("data-open", "true");
       btnSelect.setAttribute("aria-expanded", "true");
     }
   }
@@ -51,12 +51,12 @@ function selectMenu() {
   const monitorSortingValue = (cbFct) => {
     options.forEach((option) => {
       option.addEventListener("click", (e) => {
-        const newValue = e.target.getAttribute("value");
+        const newValue = e.target.getAttribute("data-value");
         cbFct(newValue);
       });
       option.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-          const newValue = e.target.getAttribute("value");
+          const newValue = e.target.getAttribute("data-value");
           cbFct(newValue);
         }
       });
@@ -65,7 +65,7 @@ function selectMenu() {
 
   /* Change HTML/CSS attribute to follow the chosen sorting */
   function changeSort(e, option) {
-    const value = e.target.getAttribute("value");
+    const value = e.target.getAttribute("data-value");
 
     // Change the value in btn by the clicked value
     btnSelect.textContent = textValue[value];
@@ -79,7 +79,7 @@ function selectMenu() {
     option.removeAttribute("tabindex");
 
     // Close menu
-    btnSelect.setAttribute("open", "false");
+    btnSelect.setAttribute("data-open", "false");
     btnSelect.setAttribute("aria-activedescendant", option.id);
     btnSelect.focus();
   }
