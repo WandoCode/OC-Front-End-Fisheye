@@ -30,6 +30,7 @@ function selectMenu() {
       btnSelect.setAttribute("data-open", "true");
       btnSelect.setAttribute("aria-expanded", "true");
     }
+    btnSelect.focus();
   }
 
   // Handle options selection
@@ -40,6 +41,7 @@ function selectMenu() {
       });
       option.addEventListener("keydown", (e) => {
         if (e.key === "Enter") changeSort(e, option);
+        if (e.key === "Escape") toggleMenuOpening();
       });
       option.addEventListener("focus", (e) => {
         btnSelect.setAttribute("aria-activedescendant", option.id);

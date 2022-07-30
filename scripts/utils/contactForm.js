@@ -13,6 +13,9 @@ const initModal = (name) => {
   // Handle modal closing
   const btnClose = document.querySelector(".contact-close");
   btnClose.addEventListener("click", closeModal);
+  btnClose.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") closeModal();
+  });
 
   // Handle modal keyboard navigation
   const modal = document.getElementById("contact_modal");
