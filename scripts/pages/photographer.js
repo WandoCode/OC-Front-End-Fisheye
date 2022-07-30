@@ -152,6 +152,8 @@ function rerenderMedias(value, photographerDatas) {
   gallery.innerHTML = "";
 
   displayMediaCards(photographerDatas.photographer, photographerDatas.medias);
+
+  initLightboxes(photographerDatas.medias, photographerDatas.photographer.name);
 }
 
 init();
