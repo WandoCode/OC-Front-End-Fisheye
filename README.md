@@ -1,6 +1,3 @@
-# Base de code du projet P6 - Parcours Front-end
+# Lien pour visualiser le site
 
-## Démarrer le projet
-
-Rien à installer ici, il suffit d'ouvrir le fichier `index.html`.
-
+Le site web peut être visualisé [via ce lien](https://wandocode.github.io/OC-Front-End-Fisheye/)
